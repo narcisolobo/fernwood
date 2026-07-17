@@ -1,0 +1,43 @@
+import Image from "next/image";
+import Pilates from "@/images/pilates.jpg";
+
+function Hero() {
+  return (
+    <section id="home" className="flex min-h-[70vh] items-center py-4">
+      <div className="container mx-auto">
+        <div className="hero">
+          <div className="hero-content flex-col px-2 py-0 md:px-0 lg:flex-row-reverse">
+            <div id="hero-image" className="shadow">
+              <Image
+                src={Pilates}
+                alt="Woman doing pilates"
+                className="rounded-lg"
+                loading="eager"
+              />
+            </div>
+            <div id="hero-copy" className="flex flex-col items-start gap-6">
+              <div className="bg-base-200 border-base-300 text-base-content/60 w-fit rounded-lg border px-2 py-1 text-xs">
+                West Hollywood · Reformer & Mat Pilates
+              </div>
+              <h1 className="font-display text-4xl font-semibold lg:text-6xl">
+                MOVE LIKE THE CITY NEVER SLEEPS
+              </h1>
+              <p>
+                Reformer and mat classes built around precision, breath, and a
+                soundtrack that hits different.
+              </p>
+              <div className="flex flex-col items-center gap-6 lg:flex-row">
+                <button className="btn btn-lg btn-primary">
+                  Book a Drop-in Class
+                </button>
+                <a className="link-primary">View Schedule →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
