@@ -27,10 +27,10 @@ function Navbar() {
           <div className="hidden flex-none lg:block">
             <DesktopNav />
           </div>
-          <button className="btn btn-primary">
+          <Link href="/schedule" className="btn btn-primary">
             <span className="lg:hidden">Book</span>
             <span className="hidden lg:inline">Book a Class</span>
-          </button>
+          </Link>
         </div>
       </div>
     </nav>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function FindYourMatch() {
   return (
     <section
@@ -13,7 +15,9 @@ function FindYourMatch() {
             Every instructor brings something different — browse the schedule to
             try a few.
           </p>
-          <button className="btn btn-primary btn-lg">View Schedule</button>
+          <Link href="/schedule" className="btn btn-primary btn-lg">
+            View Schedule
+          </Link>
         </div>
       </div>
     </section>

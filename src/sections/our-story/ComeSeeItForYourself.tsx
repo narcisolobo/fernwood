@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function ComeSeeItForYourself() {
   return (
     <section
@@ -12,9 +14,9 @@ function ComeSeeItForYourself() {
           <p className="text-neutral-content/70 lg:text-md max-w-[45ch] text-center text-sm">
             First class is on us. No membership required.
           </p>
-          <button className="btn btn-primary btn-lg">
+          <Link href="/schedule" className="btn btn-primary btn-lg">
             Book a Drop-In Class
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function CallToAction() {
   return (
     <section
@@ -13,9 +15,9 @@ function CallToAction() {
             New to Fernwood? Grab a complimentary drop-in and see what the
             hype&lsquo;s about.
           </p>
-          <button className="btn btn-primary btn-lg">
+          <Link href="/schedule" className="btn btn-primary btn-lg">
             Claim Your First Class
-          </button>
+          </Link>
         </div>
       </div>
     </section>

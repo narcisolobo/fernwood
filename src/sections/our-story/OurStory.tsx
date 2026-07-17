@@ -11,7 +11,7 @@ function OurStory() {
         <p className="text-base-content/70 mx-auto mt-4 max-w-[50ch] text-center">
           Founded on the reformer, not in a boardroom.
         </p>
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr] lg:items-start">
           <Image
             src={SimoneTeaching}
             alt="Simone Vega teaching a reformer class"
@@ -28,17 +28,16 @@ function OurStory() {
               correctly.
             </p>
             <p className="mb-4">
-              She opened Fernwood in West Hollywood in 2019 because she
-              couldn&rsquo;t find a studio that took reformer work seriously
-              without turning it into a slow, quiet ritual. Her bet: precision
-              and intensity aren&rsquo;t opposites. A room can be exacting about
-              form and still feel alive.
+              She opened Fernwood in West Hollywood in 2019 because she wanted a
+              studio that treated the work with the same patience as the results
+              it builds. Her bet: precision doesn&rsquo;t need to be rushed. A
+              room can be exacting about form and still feel unhurried.
             </p>
             <p className="mb-4">
               Fernwood grew from Simone teaching every class herself to a small
               team of instructors, each bringing their own specialty — mobility,
-              flow, strength — but all held to the same standard: no phoning it
-              in, no anonymity, no mirrors to hide behind.
+              flow, strength — but all held to the same standard: careful
+              cueing, real attention, no mirrors to hide behind.
             </p>
           </div>
         </div>

@@ -14,7 +14,7 @@ const instructors: InstructorItem[] = [
   {
     name: "Simone Vega",
     role: "Power Reformer",
-    bio: "High-intensity reformer sessions built for athletes. Simone brings the energy every single class.",
+    bio: "Simone builds strength from the ground up — controlled, deliberate sessions that leave you steadier than when you walked in.",
     photo: Simone,
   },
   {
@@ -26,7 +26,7 @@ const instructors: InstructorItem[] = [
   {
     name: "Mara Ellison",
     role: "Reformer Flow & Sculpt",
-    bio: "Former dancer with 8 years teaching reformer. Known for relentless core work and a killer playlist.",
+    bio: "Former dancer with 8 years teaching reformer. Known for patient, precise cueing and a calm, steady room.",
     photo: Mara,
   },
 ];

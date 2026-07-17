@@ -1,13 +1,23 @@
+import Fern from "@/images/brand/fern.svg";
+import Image from "next/image";
+
 function Footer() {
   return (
     <div className="bg-base-200 px-2 md:px-0">
       <div className="container mx-auto">
         <footer className="footer sm:footer-horizontal py-10">
           <aside>
-            <p>
-              <span className="font-display block text-lg font-semibold uppercase">
+            <div id="brand" className="flex items-center gap-1">
+              <Image src={Fern} alt="Fernwood Fern Logo" />
+              <p className="font-display flex-1 translate-1.5 text-xl leading-4 font-semibold uppercase lg:text-2xl">
                 Fernwood
-              </span>
+                <br />
+                <span className="font-sans text-lg font-light tracking-wider uppercase">
+                  Pilates Studio
+                </span>
+              </p>
+            </div>
+            <p>
               <br />
               8332 Santa Monica Blvd,
               <br />
