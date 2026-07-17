@@ -1,8 +1,6 @@
-import { type ScheduleClass } from "./schedule-data";
-import JoinButton from "./JoinButton";
+import { type ScheduleClass } from "./old-schedule-data";
 
 function ClassRow({
-  id,
   time,
   name,
   teacher,
@@ -21,11 +19,21 @@ function ClassRow({
         <p className="text-xs">
           {status === "open"
             ? `${spotsOpen} spots open`
-            : `${waitlistCount} in waitlist`}
+            : waitlistCount > -1
+              ? `${waitlistCount} in waitlist`
+              : ""}
         </p>
       </td>
       <td>
-        <JoinButton classId={id.toString()} status={status} />
+        {status === "open" ? (
+          <button className="btn btn-secondary btn-sm btn-soft">
+            Join Class
+          </button>
+        ) : (
+          <button className="btn btn-neutral btn-sm btn-soft">
+            Join Waitlist
+          </button>
+        )}
       </td>
     </tr>
   );
