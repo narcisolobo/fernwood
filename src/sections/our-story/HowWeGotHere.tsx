@@ -13,7 +13,7 @@ const timeline: TimelineItem[] = [
   },
   {
     year: "2019",
-    title: "Neon Core opens",
+    title: "Fernwood opens",
     description:
       "A single studio room on Santa Monica Blvd, Simone teaching every class herself.",
   },

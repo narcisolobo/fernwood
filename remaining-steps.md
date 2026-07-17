@@ -1,4 +1,4 @@
-# Neon Core — Remaining Build Steps
+# Fernwood — Remaining Build Steps
 
 ## 1. Supabase setup
 

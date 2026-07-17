@@ -6,7 +6,7 @@ function Footer() {
           <aside>
             <p>
               <span className="font-display block text-lg font-semibold uppercase">
-                Neon Core
+                Fernwood
               </span>
               <br />
               8332 Santa Monica Blvd,
@@ -14,7 +14,7 @@ function Footer() {
               West Hollywood, CA 90069
             </p>
             <p className="text-base-content/70 max-w-[40ch] text-xs">
-              Neon Core is a fictional pilates studio created solely to showcase
+              Fernwood is a fictional pilates studio created solely to showcase
               web development skills. It is not a real business and is not
               affiliated with any actual studio, gym, or fitness establishment.
             </p>

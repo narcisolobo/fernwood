@@ -12,7 +12,7 @@ function Navbar() {
             id="brand"
             className="font-display flex-1 text-xl font-semibold uppercase lg:text-2xl"
           >
-            <Link href="/">Neon Core</Link>
+            <Link href="/">Fernwood</Link>
           </p>
           <div className="hidden flex-none lg:block">
             <DesktopNav />

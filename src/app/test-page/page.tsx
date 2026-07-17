@@ -5,7 +5,7 @@ function Home() {
     <>
       <div className="navbar bg-base-100 border-base-300 border-b px-4">
         <div className="flex-1">
-          <span className="font-display text-2xl tracking-wide">Neon Core</span>
+          <span className="font-display text-2xl tracking-wide">Fernwood</span>
           <span className="badge badge-primary badge-sm ml-3">
             DaisyUI test page
           </span>
@@ -220,7 +220,7 @@ function Home() {
             <span className="loading loading-spinner loading-sm text-primary" />
             <span className="loading loading-dots loading-md text-secondary" />
             <span className="loading loading-ring loading-lg text-accent" />
-            <div className="tooltip" data-tip="Neon Core">
+            <div className="tooltip" data-tip="Fernwood">
               <button className="btn btn-sm">Hover me</button>
             </div>
             <label htmlFor="test-modal" className="btn btn-sm btn-outline">

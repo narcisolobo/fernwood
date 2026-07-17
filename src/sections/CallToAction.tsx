@@ -10,7 +10,7 @@ function CallToAction() {
             Your first class is on us
           </h2>
           <p className="lg:text-md max-w-[45ch] text-center text-sm">
-            New to Neon Core? Grab a complimentary drop-in and see what the
+            New to Fernwood? Grab a complimentary drop-in and see what the
             hype&lsquo;s about.
           </p>
           <button className="btn btn-primary btn-lg">

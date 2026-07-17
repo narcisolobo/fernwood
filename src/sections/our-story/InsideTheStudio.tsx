@@ -17,7 +17,7 @@ function InsideTheStudio() {
           <div className="relative aspect-4/3 lg:row-span-2 lg:aspect-auto">
             <Image
               src={FrontDesk}
-              alt="Neon Core studio front desk"
+              alt="Fernwood studio front desk"
               fill
               className="rounded-lg object-cover"
             />

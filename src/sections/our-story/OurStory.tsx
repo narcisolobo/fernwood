@@ -28,14 +28,14 @@ function OurStory() {
               correctly.
             </p>
             <p className="mb-4">
-              She opened Neon Core in West Hollywood in 2019 because she
+              She opened Fernwood in West Hollywood in 2019 because she
               couldn&rsquo;t find a studio that took reformer work seriously
               without turning it into a slow, quiet ritual. Her bet: precision
               and intensity aren&rsquo;t opposites. A room can be exacting about
               form and still feel alive.
             </p>
             <p className="mb-4">
-              Neon Core grew from Simone teaching every class herself to a small
+              Fernwood grew from Simone teaching every class herself to a small
               team of instructors, each bringing their own specialty — mobility,
               flow, strength — but all held to the same standard: no phoning it
               in, no anonymity, no mirrors to hide behind.

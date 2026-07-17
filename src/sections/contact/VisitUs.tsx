@@ -16,7 +16,7 @@ function VisitUs() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
-              title="Neon Core studio location"
+              title="Fernwood studio location"
             />
           </div>
           <div className="flex flex-col gap-8">
