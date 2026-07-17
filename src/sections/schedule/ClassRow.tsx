@@ -26,9 +26,13 @@ function ClassRow({
       </td>
       <td>
         {status === "open" ? (
-          <button className="btn btn-secondary btn-sm">Join Class</button>
+          <button className="btn btn-secondary btn-sm btn-soft">
+            Join Class
+          </button>
         ) : (
-          <button className="btn btn-neutral btn-sm">Join Waitlist</button>
+          <button className="btn btn-neutral btn-sm btn-soft">
+            Join Waitlist
+          </button>
         )}
       </td>
     </tr>

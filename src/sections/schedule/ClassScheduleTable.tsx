@@ -26,7 +26,7 @@ function ClassScheduleTable() {
             </div>
           </div>
           <div className="overflow-x-auto">
-            <table className="table-zebra table">
+            <table className="table">
               <thead>
                 <tr>
                   <th>Start Time</th>

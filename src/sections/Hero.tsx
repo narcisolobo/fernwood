@@ -19,12 +19,12 @@ function Hero() {
               <div className="bg-base-200 border-base-300 text-base-content/60 w-fit rounded-lg border px-2 py-1 text-xs">
                 West Hollywood · Reformer & Mat Pilates
               </div>
-              <h1 className="font-display text-4xl font-semibold lg:text-6xl">
-                MOVE LIKE THE CITY NEVER SLEEPS
+              <h1 className="font-display text-4xl lg:text-6xl">
+                Grow stronger from the ground up
               </h1>
               <p>
-                Reformer and mat classes built around precision, breath, and a
-                soundtrack that hits different.
+                Reformer and mat classes built around precision, breath, and
+                room to move at your own pace.
               </p>
               <div className="flex flex-col items-center gap-6 lg:flex-row">
                 <button className="btn btn-lg btn-primary">

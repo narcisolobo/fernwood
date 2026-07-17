@@ -12,8 +12,8 @@ function Schedule() {
           <button className="btn btn-soft btn-primary btn-sm">
             All Classes
           </button>
-          <button className="btn btn-outline btn-sm">Reformer</button>
-          <button className="btn btn-outline btn-sm">Mat</button>
+          <button className="btn btn-soft btn-sm">Reformer</button>
+          <button className="btn btn-soft btn-sm">Mat</button>
         </div>
       </div>
     </section>

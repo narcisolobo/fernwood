@@ -1,7 +1,7 @@
 import Drawer from "@/components/layout/Drawer";
 import { geistMono } from "@/fonts/geist-mono";
-import { inter } from "@/fonts/inter";
-import { oswald } from "@/fonts/oswald";
+import { nunito } from "@/fonts/nunito-sans";
+import { fraunces } from "@/fonts/fraunces";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
@@ -21,7 +21,7 @@ function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       data-theme="autumn"
-      className={`${inter.variable} ${oswald.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${nunito.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <Drawer>{children}</Drawer>
