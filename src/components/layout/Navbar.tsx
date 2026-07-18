@@ -13,7 +13,7 @@ function Navbar() {
           <div className="flex-1">
             <Link href="/">
               <div id="brand" className="flex items-center gap-1">
-                <Image src={Fern} alt="Fernwood Fern Logo" />
+                <Image src={Fern} alt="Fernwood Fern Logo" loading="eager" />
                 <p className="font-display flex-1 translate-1.5 text-xl leading-4 font-semibold uppercase lg:text-2xl">
                   Fernwood
                   <br />

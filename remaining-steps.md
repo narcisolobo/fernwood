@@ -2,8 +2,8 @@
 
 ## 1. Supabase setup
 
-- Create the `neoncore` schema + all four tables (`instructors`, `classes`, `students`, `enrollments`) with `capacity` included
-- Expose the `neoncore` schema in Settings → API
+- Create the `fernwood` schema + all four tables (`instructors`, `classes`, `students`, `enrollments`) with `capacity` included
+- Expose the `fernwood` schema in Settings → API
 - Enable RLS on all tables (locked down by default — no direct table access from the client)
 - Create and grant the `book_class` RPC function
 - Seed real data: instructors from existing bios, a believable weekly class schedule (Fitmix pattern as reference — morning cluster, midday lull, evening cluster)

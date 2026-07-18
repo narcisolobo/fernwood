@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabaseDataClient } from "@/lib/supabase";
 import { type ScheduleClass } from "@/sections/schedule/schedule-data";
 
 function formatTime(time: string): string {
@@ -30,6 +30,7 @@ function formatDayLabel(date: Date): string {
 }
 
 async function getSchedule(date: Date): Promise<ScheduleClass[]> {
+  const supabase = supabaseDataClient();
   const dayOfWeek = date.getDay(); // 0 (Sun) .. 6 (Sat) — matches our schema convention
 
   const { data: classes, error: classesError } = await supabase
@@ -50,7 +51,8 @@ async function getSchedule(date: Date): Promise<ScheduleClass[]> {
 
   if (classesError) {
     console.error("Failed to load classes:", classesError);
-    return [];
+    throw new Error(`Supabase error: ${classesError.message}`);
+    // return [];
   }
 
   if (!classes || classes.length === 0) return [];

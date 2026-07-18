@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { supabaseDataClient } from "@/lib/supabase";
 
 function JoinButton({
   classId,
@@ -14,6 +14,7 @@ function JoinButton({
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
+    const supabase = supabaseDataClient();
     // Simple prompt-based capture for the demo — worth replacing with a
     // real modal/form later, but functionally correct for now.
     const name = window.prompt("Your name:");
@@ -36,8 +37,7 @@ function JoinButton({
     }
 
     const enrollmentStatus = data?.[0]?.enrollment_status as
-      | "booked"
-      | "waitlisted";
+      "booked" | "waitlisted";
     setResult(enrollmentStatus);
   }
 

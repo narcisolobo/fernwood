@@ -11,6 +11,8 @@ const options: SupabaseClientOptions<"fernwood"> = {
   },
 };
 
-const supabase = createClient(supabaseUrl, publishableKey, options);
+function supabaseDataClient() {
+  return createClient(supabaseUrl, publishableKey, options);
+}
 
-export { supabase };
+export { supabaseDataClient };
