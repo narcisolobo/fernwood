@@ -20,9 +20,9 @@ function Hero() {
                 West Hollywood · Reformer & Mat Pilates
               </div>
               <h1 className="font-display text-4xl lg:text-6xl">
-                Grow stronger from the ground up
+                Grow stronger from the ground up.
               </h1>
-              <p>
+              <p className="text-lg lg:text-xl">
                 Reformer and mat classes built around precision, breath, and
                 room to move at your own pace.
               </p>

@@ -36,7 +36,7 @@ function PhilosophyTile({
         <Icon color="currentColor" />
       </div>
       <h3 className="text-base-content font-semibold">{title}</h3>
-      <p className="text-base-content/60 hidden text-sm lg:block">
+      <p className="text-base-content/60 hidden text-sm md:text-base lg:block">
         {description}
       </p>
     </div>
