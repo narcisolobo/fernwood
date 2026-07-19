@@ -1,11 +1,11 @@
-import { cookies } from "next/headers";
+import { supabaseServerClient } from "@/lib/supabase/server";
 import { type NextRequest, NextResponse } from "next/server";
-import { supabaseServerClient } from "@/lib/supabase";
+import { type EmailOtpType } from "@supabase/supabase-js";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const token_hash = searchParams.get("token_hash");
-  const type = searchParams.get("type");
+  const type = searchParams.get("type") as EmailOtpType;
   const next = searchParams.get("next") ?? "/";
 
   const redirectTo = request.nextUrl.clone();
@@ -14,8 +14,7 @@ export async function GET(request: NextRequest) {
   redirectTo.searchParams.delete("type");
 
   if (token_hash && type) {
-    const cookieStore = await cookies();
-    const supabase = await supabaseServerClient(cookieStore);
+    const supabase = await supabaseServerClient();
     const { error } = await supabase.auth.verifyOtp({
       type,
       token_hash,
