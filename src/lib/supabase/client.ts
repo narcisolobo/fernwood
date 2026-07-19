@@ -1,14 +1,10 @@
-import {
-  createClient,
-  type SupabaseClientOptions,
-} from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-const options: SupabaseClientOptions<"public"> = {};
 
 function supabaseJsClient() {
-  return createClient(SUPABASE_URL, PUBLISHABLE_KEY, options);
+  return createBrowserClient(SUPABASE_URL, PUBLISHABLE_KEY);
 }
 
 export { supabaseJsClient };

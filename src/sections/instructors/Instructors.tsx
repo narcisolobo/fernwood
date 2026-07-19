@@ -6,11 +6,11 @@ function Instructors() {
   return (
     <section id="instructors" className="flex items-center py-12">
       <div className="container mx-auto px-2 md:px-0">
-        <h2 className="font-display mb-2 text-2xl font-semibold uppercase">
-          Meet your instructors
+        <h2 className="font-display mb-2 text-2xl font-semibold lg:text-5xl">
+          Meet your instructors:
         </h2>
         <div className="flex flex-col items-center justify-between lg:flex-row">
-          <p className="mb-2">
+          <p className="mb-2 lg:text-lg">
             Certified, obsessive about form, and genuinely fun to be around.
           </p>
           <Link href="/instructors" className="text-primary">

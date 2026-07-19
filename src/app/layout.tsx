@@ -1,7 +1,7 @@
 import Drawer from "@/components/layout/Drawer";
+import { fraunces } from "@/fonts/fraunces";
 import { geistMono } from "@/fonts/geist-mono";
 import { nunito } from "@/fonts/nunito-sans";
-import { fraunces } from "@/fonts/fraunces";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";

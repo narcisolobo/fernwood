@@ -1,4 +1,5 @@
 import SignInForm from "./SignInForm";
+import DemoNotice from "./DemoNotice";
 
 type SignInProps = {
   error?: string;
@@ -19,6 +20,7 @@ function SignIn({ error }: SignInProps) {
             </span>
           </div>
         )}
+        <DemoNotice />
         <SignInForm />
       </div>
     </section>
