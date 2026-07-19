@@ -5,7 +5,7 @@ import { type EmailOtpType } from "@supabase/supabase-js";
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const token_hash = searchParams.get("token_hash");
-  const type = searchParams.get("type") as EmailOtpType;
+  const type = searchParams.get("type") as EmailOtpType | null;
   const next = searchParams.get("next") ?? "/";
 
   const redirectTo = request.nextUrl.clone();
@@ -27,6 +27,6 @@ export async function GET(request: NextRequest) {
   }
 
   // If something goes wrong, return the user to an error page or login
-  redirectTo.pathname = "/login?error=auth-failed";
+  redirectTo.pathname = "/sign-in?error=auth-failed";
   return NextResponse.redirect(redirectTo);
 }
