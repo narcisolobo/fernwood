@@ -6,11 +6,12 @@ export const dynamic = "force-dynamic";
 
 interface ClassScheduleTableProps {
   dateStr?: string;
+  type?: "reformer" | "mat";
 }
 
-async function ClassScheduleTable({ dateStr }: ClassScheduleTableProps) {
+async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
   const date = dateStr ? new Date(dateStr) : new Date();
-  const classes = await getSchedule(date);
+  const classes = await getSchedule(date, type);
   const [weekday, rest] = formatDayLabel(date).split("|");
 
   return (

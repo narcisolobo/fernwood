@@ -6,13 +6,18 @@ interface SchedulePageProps {
 }
 
 async function SchedulePage({ searchParams }: SchedulePageProps) {
-  const rawDate = (await searchParams).date;
+  const params = await searchParams;
+  const rawDate = params.date;
   const dateStr = typeof rawDate === "string" ? rawDate : undefined;
+
+  const rawType = params.type;
+  const type =
+    rawType === "reformer" || rawType === "mat" ? rawType : undefined;
 
   return (
     <main>
       <Schedule />
-      <ClassScheduleTable dateStr={dateStr} />
+      <ClassScheduleTable dateStr={dateStr} type={type} />
     </main>
   );
 }

@@ -29,11 +29,14 @@ function formatDayLabel(date: Date): string {
   return `${weekday}|${rest}`; // caller splits on "|" for the two-tone styling
 }
 
-async function getSchedule(date: Date): Promise<ScheduleClass[]> {
+async function getSchedule(
+  date: Date,
+  type?: "reformer" | "mat",
+): Promise<ScheduleClass[]> {
   const supabase = supabaseJsClient();
   const dayOfWeek = date.getDay(); // 0 (Sun) .. 6 (Sat) — matches our schema convention
 
-  const { data: classes, error: classesError } = await supabase
+  let query = supabase
     .from("classes")
     .select(
       `
@@ -46,8 +49,16 @@ async function getSchedule(date: Date): Promise<ScheduleClass[]> {
       instructors ( name )
     `,
     )
-    .eq("day_of_week", dayOfWeek)
-    .order("start_time", { ascending: true });
+    .eq("day_of_week", dayOfWeek);
+
+  if (type) {
+    query = query.eq("type", type);
+  }
+
+  const { data: classes, error: classesError } = await query.order(
+    "start_time",
+    { ascending: true },
+  );
 
   if (classesError) {
     console.error("Failed to load classes:", classesError);
