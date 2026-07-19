@@ -4,55 +4,55 @@
 -- ============================================================
 
 -- 1. SCHEMA -----------------------------------------------------
-create schema if not exists fernwood;
+-- create schema if not exists fernwood;
 
 -- 2. TABLES -------------------------------------------------------
-create table fernwood.instructors (
+create table instructors (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   role text
 );
 
-create table fernwood.classes (
+create table classes (
   id uuid primary key default gen_random_uuid(),
   name text not null,
-  instructor_id uuid not null references fernwood.instructors(id),
+  instructor_id uuid not null references instructors(id),
   day_of_week int not null,        -- 0 = Sunday ... 6 = Saturday
   start_time time not null,
   duration_minutes int not null default 60,
   capacity int not null default 12
 );
 
-create table fernwood.students (
+create table students (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   email text unique
 );
 
-create table fernwood.enrollments (
+create table enrollments (
   id uuid primary key default gen_random_uuid(),
-  student_id uuid not null references fernwood.students(id) on delete cascade,
-  class_id uuid not null references fernwood.classes(id) on delete cascade,
+  student_id uuid not null references students(id) on delete cascade,
+  class_id uuid not null references classes(id) on delete cascade,
   status text not null default 'booked', -- 'booked' | 'waitlisted' | 'cancelled' | 'checked_in'
   created_at timestamptz not null default now(),
   unique (student_id, class_id)
 );
 
 -- 3. ROW LEVEL SECURITY --------------------------------------------
-alter table fernwood.instructors enable row level security;
-alter table fernwood.classes enable row level security;
-alter table fernwood.students enable row level security;
-alter table fernwood.enrollments enable row level security;
+alter table instructors enable row level security;
+alter table classes enable row level security;
+alter table students enable row level security;
+alter table enrollments enable row level security;
 
 -- Public (anon) can READ instructors and classes — needed for the
 -- public Schedule page. No write access granted here.
 create policy "anon can read instructors"
-  on fernwood.instructors for select
+  on instructors for select
   to anon
   using (true);
 
 create policy "anon can read classes"
-  on fernwood.classes for select
+  on classes for select
   to anon
   using (true);
 
@@ -63,7 +63,7 @@ create policy "anon can read classes"
 -- of the roadmap, once Supabase Auth is wired up).
 
 -- 4. BOOKING FUNCTION ------------------------------------------------
-create or replace function fernwood.book_class(
+create or replace function book_class(
   p_class_id uuid,
   p_student_name text,
   p_student_email text
@@ -80,13 +80,13 @@ declare
   v_status text;
   v_enrollment_id uuid;
 begin
-  insert into fernwood.students (name, email)
+  insert into students (name, email)
   values (p_student_name, p_student_email)
   on conflict (email) do update set name = excluded.name
   returning id into v_student_id;
 
   select capacity into v_capacity
-  from fernwood.classes
+  from classes
   where id = p_class_id
   for update;
 
@@ -95,12 +95,12 @@ begin
   end if;
 
   select count(*) into v_booked_count
-  from fernwood.enrollments
+  from enrollments
   where class_id = p_class_id and status = 'booked';
 
   v_status := case when v_booked_count < v_capacity then 'booked' else 'waitlisted' end;
 
-  insert into fernwood.enrollments (student_id, class_id, status)
+  insert into enrollments (student_id, class_id, status)
   values (v_student_id, p_class_id, v_status)
   on conflict (student_id, class_id) do update set status = excluded.status
   returning id into v_enrollment_id;
@@ -109,10 +109,10 @@ begin
 end;
 $$;
 
-grant execute on function fernwood.book_class to anon;
+grant execute on function book_class to anon;
 
 -- 5. SEED DATA — INSTRUCTORS ----------------------------------------
-insert into fernwood.instructors (name, role) values
+insert into instructors (name, role) values
   ('Simone Vega', 'Power Reformer'),
   ('Devon Cruz', 'Mat Pilates & Mobility'),
   ('Mara Ellison', 'Reformer Flow & Sculpt'),
@@ -125,31 +125,31 @@ insert into fernwood.instructors (name, role) values
 -- Repeats Mon–Fri; lighter weekend schedule.
 
 -- Weekdays (1 = Monday ... 5 = Friday)
-insert into fernwood.classes (name, instructor_id, day_of_week, start_time, duration_minutes, capacity)
-select 'Power Reformer', id, d, '06:00'::time, 60, 12 from fernwood.instructors, generate_series(1,5) as d where name = 'Simone Vega'
+insert into classes (name, instructor_id, day_of_week, start_time, duration_minutes, capacity)
+select 'Power Reformer', id, d, '06:00'::time, 60, 12 from instructors, generate_series(1,5) as d where name = 'Simone Vega'
 union all
-select 'Mat Pilates & Mobility', id, d, '07:00'::time, 60, 14 from fernwood.instructors, generate_series(1,5) as d where name = 'Devon Cruz'
+select 'Mat Pilates & Mobility', id, d, '07:00'::time, 60, 14 from instructors, generate_series(1,5) as d where name = 'Devon Cruz'
 union all
-select 'Reformer Flow & Sculpt', id, d, '08:00'::time, 60, 12 from fernwood.instructors, generate_series(1,5) as d where name = 'Mara Ellison'
+select 'Reformer Flow & Sculpt', id, d, '08:00'::time, 60, 12 from instructors, generate_series(1,5) as d where name = 'Mara Ellison'
 union all
-select 'Mat Pilates (Apprentice)', id, d, '09:00'::time, 60, 14 from fernwood.instructors, generate_series(1,5) as d where name = 'Ji-woo Kim'
+select 'Mat Pilates (Apprentice)', id, d, '09:00'::time, 60, 14 from instructors, generate_series(1,5) as d where name = 'Ji-woo Kim'
 union all
-select 'Power Reformer', id, d, '16:30'::time, 60, 12 from fernwood.instructors, generate_series(1,5) as d where name = 'Simone Vega'
+select 'Power Reformer', id, d, '16:30'::time, 60, 12 from instructors, generate_series(1,5) as d where name = 'Simone Vega'
 union all
-select 'Reformer Flow & Sculpt', id, d, '17:30'::time, 60, 12 from fernwood.instructors, generate_series(1,5) as d where name = 'Mara Ellison'
+select 'Reformer Flow & Sculpt', id, d, '17:30'::time, 60, 12 from instructors, generate_series(1,5) as d where name = 'Mara Ellison'
 union all
-select 'Reformer Fundamentals', id, d, '18:30'::time, 60, 10 from fernwood.instructors, generate_series(1,5) as d where name = 'Lusine Sarkisian';
+select 'Reformer Fundamentals', id, d, '18:30'::time, 60, 10 from instructors, generate_series(1,5) as d where name = 'Lusine Sarkisian';
 
 -- Weekend (0 = Sunday, 6 = Saturday) — lighter schedule, mornings only
-insert into fernwood.classes (name, instructor_id, day_of_week, start_time, duration_minutes, capacity)
-select 'Power Reformer', id, d, '08:00'::time, 60, 12 from fernwood.instructors, generate_series(0,6,6) as d where name = 'Simone Vega'
+insert into classes (name, instructor_id, day_of_week, start_time, duration_minutes, capacity)
+select 'Power Reformer', id, d, '08:00'::time, 60, 12 from instructors, generate_series(0,6,6) as d where name = 'Simone Vega'
 union all
-select 'Mat Pilates & Mobility', id, d, '09:00'::time, 60, 14 from fernwood.instructors, generate_series(0,6,6) as d where name = 'Devon Cruz'
+select 'Mat Pilates & Mobility', id, d, '09:00'::time, 60, 14 from instructors, generate_series(0,6,6) as d where name = 'Devon Cruz'
 union all
-select 'Reformer Flow & Sculpt', id, d, '10:00'::time, 60, 12 from fernwood.instructors, generate_series(0,6,6) as d where name = 'Mara Ellison';
+select 'Reformer Flow & Sculpt', id, d, '10:00'::time, 60, 12 from instructors, generate_series(0,6,6) as d where name = 'Mara Ellison';
 
 -- 7. SEED DATA — STUDENTS ---------------------------------------------
-insert into fernwood.students (name, email) values
+insert into students (name, email) values
   ('Elena Cho', 'elena.cho@example.com'),
   ('David Okafor', 'david.okafor@example.com'),
   ('Priya Nair', 'priya.nair@example.com'),
@@ -170,13 +170,13 @@ insert into fernwood.students (name, email) values
 -- Monday 6:00 AM Power Reformer (Simone) — deliberately overfilled
 -- (capacity 12) so several students land as 'waitlisted'.
 with target_class as (
-  select id from fernwood.classes
+  select id from classes
   where day_of_week = 1 and start_time = '06:00'::time
   limit 1
 ),
 ordered_students as (
   select id, row_number() over (order by name) as rn
-  from fernwood.students
+  from students
   where email in (
     'elena.cho@example.com','david.okafor@example.com','priya.nair@example.com',
     'sam.whitfield@example.com','grace.kim@example.com','marcus.lee@example.com',
@@ -185,7 +185,7 @@ ordered_students as (
     'ben.castillo@example.com','renee.ozawa@example.com'
   )
 )
-insert into fernwood.enrollments (student_id, class_id, status)
+insert into enrollments (student_id, class_id, status)
 select
   os.id,
   tc.id,
@@ -196,19 +196,19 @@ from ordered_students os, target_class tc;
 -- this morning in the demo's "current day" framing, so most attendees
 -- are checked in, one is a no-show still marked 'booked'.
 with target_class as (
-  select id from fernwood.classes
+  select id from classes
   where day_of_week = 1 and start_time = '07:00'::time
   limit 1
 ),
 ordered_students as (
   select id, row_number() over (order by name) as rn
-  from fernwood.students
+  from students
   where email in (
     'miles.anderson@example.com','elena.cho@example.com','david.okafor@example.com',
     'grace.kim@example.com','theo.brandt@example.com'
   )
 )
-insert into fernwood.enrollments (student_id, class_id, status)
+insert into enrollments (student_id, class_id, status)
 select
   os.id,
   tc.id,
@@ -218,15 +218,15 @@ from ordered_students os, target_class tc;
 -- Monday 4:30 PM Power Reformer (Simone) — lightly booked, still open,
 -- gives the Roster screen a mostly-empty class alongside the full ones.
 with target_class as (
-  select id from fernwood.classes
+  select id from classes
   where day_of_week = 1 and start_time = '16:30'::time
   limit 1
 ),
 ordered_students as (
-  select id from fernwood.students
+  select id from students
   where email in ('priya.nair@example.com','nina.alvarez@example.com','ben.castillo@example.com')
 )
-insert into fernwood.enrollments (student_id, class_id, status)
+insert into enrollments (student_id, class_id, status)
 select os.id, tc.id, 'booked'
 from ordered_students os, target_class tc;
 
@@ -235,7 +235,7 @@ from ordered_students os, target_class tc;
 -- not others. Assigned to the apprentices, consistent with their bios
 -- ("teaching select classes each week") rather than adding a third
 -- daily slot to a lead instructor.
-insert into fernwood.classes (name, instructor_id, day_of_week, start_time, duration_minutes, capacity)
-select 'Mat Pilates (Apprentice)', id, d, '10:00'::time, 60, 14 from fernwood.instructors, generate_series(1,5,2) as d where name = 'Ji-woo Kim'
+insert into classes (name, instructor_id, day_of_week, start_time, duration_minutes, capacity)
+select 'Mat Pilates (Apprentice)', id, d, '10:00'::time, 60, 14 from instructors, generate_series(1,5,2) as d where name = 'Ji-woo Kim'
 union all
-select 'Reformer Fundamentals (Apprentice)', id, d, '11:00'::time, 60, 10 from fernwood.instructors, generate_series(1,5,2) as d where name = 'Lusine Sarkisian';
+select 'Reformer Fundamentals (Apprentice)', id, d, '11:00'::time, 60, 10 from instructors, generate_series(1,5,2) as d where name = 'Lusine Sarkisian';

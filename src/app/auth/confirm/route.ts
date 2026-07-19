@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
   }
 
   // If something goes wrong, return the user to an error page or login
-  redirectTo.pathname = "/sign-in";
+  redirectTo.pathname = "/auth/sign-in";
   redirectTo.searchParams.set("error", "auth-failed");
   return NextResponse.redirect(redirectTo);
 }
