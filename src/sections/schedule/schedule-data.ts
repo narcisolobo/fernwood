@@ -7,6 +7,7 @@ interface ScheduleClass {
   status: "open" | "full";
   spotsOpen: number;
   waitlistCount: number;
+  myStatus: "booked" | "waitlisted" | null;
 }
 
 export { type ScheduleClass };

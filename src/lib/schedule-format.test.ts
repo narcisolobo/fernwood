@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formatDayLabel, formatDuration, formatTime } from "./schedule";
+import {
+  formatConfirmationDate,
+  formatDayLabel,
+  formatDuration,
+  formatTime,
+} from "./schedule-format";
 
 describe("formatTime", () => {
   it("formats midnight as 12:00 am", () => {
@@ -42,5 +47,14 @@ describe("formatDayLabel", () => {
   it("splits weekday and date with a '|' separator", () => {
     // 2026-07-20 is a Monday.
     expect(formatDayLabel(new Date(2026, 6, 20))).toBe("Mon|July 20, 2026");
+  });
+});
+
+describe("formatConfirmationDate", () => {
+  it("formats with long weekday and month, numeric day, no year", () => {
+    // 2026-07-20 is a Monday.
+    expect(formatConfirmationDate(new Date(2026, 6, 20))).toBe(
+      "Monday, July 20",
+    );
   });
 });

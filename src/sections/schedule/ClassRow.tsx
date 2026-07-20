@@ -1,6 +1,10 @@
 import JoinButton from "./JoinButton";
 import { type ScheduleClass } from "./schedule-data";
 
+interface ClassRowProps extends ScheduleClass {
+  date: Date;
+}
+
 function ClassRow({
   id,
   time,
@@ -10,7 +14,9 @@ function ClassRow({
   status,
   spotsOpen,
   waitlistCount,
-}: ScheduleClass) {
+  myStatus,
+  date,
+}: ClassRowProps) {
   return (
     <tr>
       <td>{time}</td>
@@ -30,6 +36,8 @@ function ClassRow({
           classId={id.toString()}
           teacher={teacher}
           status={status}
+          myStatus={myStatus}
+          date={date}
         />
       </td>
     </tr>

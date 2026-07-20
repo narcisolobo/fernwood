@@ -145,12 +145,20 @@ export type Database = {
           enrollment_status: string
         }[]
       }
+      cancel_booking: { Args: { p_class_id: string }; Returns: undefined }
       get_enrollment_counts: {
         Args: { p_class_ids: string[] }
         Returns: {
           booked_count: number
           class_id: string
           waitlisted_count: number
+        }[]
+      }
+      get_my_enrollment_status: {
+        Args: { p_class_ids: string[] }
+        Returns: {
+          class_id: string
+          status: string
         }[]
       }
     }

@@ -12,10 +12,13 @@ vi.mock("@/lib/supabase/server", () => ({
 
 const fakeSession = { user: { id: "u1" } } as unknown as Session;
 
+const testDate = new Date(2026, 6, 20); // Monday, July 20 2026
+
 function renderJoinButton({
   session = null as Session | null,
   loading = false,
   status = "open" as "open" | "full",
+  myStatus = null as "booked" | "waitlisted" | null,
 } = {}) {
   return render(
     <AuthContext.Provider value={{ session, loading }}>
@@ -24,6 +27,8 @@ function renderJoinButton({
         classId="1"
         teacher="Simone Vega"
         status={status}
+        myStatus={myStatus}
+        date={testDate}
       />
     </AuthContext.Provider>,
   );
@@ -64,5 +69,30 @@ describe("JoinButton", () => {
     renderJoinButton({ session: null });
     fireEvent.click(screen.getByRole("button", { name: "Join Class" }));
     expect(document.querySelector("dialog")).not.toHaveAttribute("open");
+  });
+
+  it("shows 'Cancel Booking' when the user has already booked", () => {
+    renderJoinButton({ session: fakeSession, myStatus: "booked" });
+    expect(
+      screen.getByRole("button", { name: "Cancel Booking" }),
+    ).toBeInTheDocument();
+  });
+
+  it("shows 'Leave Waitlist' when the user is already waitlisted", () => {
+    renderJoinButton({ session: fakeSession, myStatus: "waitlisted" });
+    expect(
+      screen.getByRole("button", { name: "Leave Waitlist" }),
+    ).toBeInTheDocument();
+  });
+
+  it("opens the cancel confirmation modal when already booked", () => {
+    renderJoinButton({ session: fakeSession, myStatus: "booked" });
+    fireEvent.click(screen.getByRole("button", { name: "Cancel Booking" }));
+    expect(document.querySelector("dialog")).toHaveAttribute("open");
+    expect(
+      screen.getByText(
+        "Are you sure you want to cancel your booking for Power Reformer on Monday, July 20?",
+      ),
+    ).toBeInTheDocument();
   });
 });

@@ -24,7 +24,9 @@ function WeekTableBody({ day }: WeekTableBodyProps) {
           </td>
         </tr>
       ) : (
-        day.classes.map((cls) => <ClassRow key={cls.id} {...cls} />)
+        day.classes.map((cls) => (
+          <ClassRow key={cls.id} date={day.date} {...cls} />
+        ))
       )}
     </tbody>
   );

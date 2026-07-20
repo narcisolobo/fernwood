@@ -1,32 +1,6 @@
 import { supabaseServerClient } from "@/lib/supabase/server";
 import { type ScheduleClass } from "@/sections/schedule/schedule-data";
-
-function formatTime(time: string): string {
-  // time comes back from Postgres as "HH:MM:SS"
-  const [hourStr, minuteStr] = time.split(":");
-  const hour = parseInt(hourStr, 10);
-  const period = hour >= 12 ? "pm" : "am";
-  const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-  return `${displayHour}:${minuteStr} ${period} PDT`;
-}
-
-function formatDuration(minutes: number): string {
-  if (minutes % 60 === 0) {
-    const hours = minutes / 60;
-    return `${hours} hour${hours > 1 ? "s" : ""}`;
-  }
-  return `${minutes} min`;
-}
-
-function formatDayLabel(date: Date): string {
-  const weekday = date.toLocaleDateString("en-US", { weekday: "short" });
-  const rest = date.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-  return `${weekday}|${rest}`; // caller splits on "|" for the two-tone styling
-}
+import { formatTime, formatDuration, formatDayLabel } from "./schedule-format";
 
 async function getSchedule(
   date: Date,
@@ -68,13 +42,20 @@ async function getSchedule(
 
   const classIds = classes.map((c) => c.id);
 
-  const { data: counts, error: countsError } = await supabase.rpc(
-    "get_enrollment_counts",
-    { p_class_ids: classIds },
-  );
+  const [
+    { data: counts, error: countsError },
+    { data: myStatuses, error: myStatusError },
+  ] = await Promise.all([
+    supabase.rpc("get_enrollment_counts", { p_class_ids: classIds }),
+    supabase.rpc("get_my_enrollment_status", { p_class_ids: classIds }),
+  ]);
 
   if (countsError) {
     console.error("Failed to load enrollment counts:", countsError);
+  }
+
+  if (myStatusError) {
+    console.error("Failed to load enrollment status:", myStatusError);
   }
 
   return classes.map((cls) => {
@@ -88,6 +69,9 @@ async function getSchedule(
       ? cls.instructors[0]
       : cls.instructors;
 
+    const myStatus =
+      (myStatuses ?? []).find((s) => s.class_id === cls.id)?.status ?? null;
+
     return {
       id: cls.id,
       time: formatTime(cls.start_time),
@@ -97,6 +81,7 @@ async function getSchedule(
       status,
       spotsOpen,
       waitlistCount,
+      myStatus: myStatus as "booked" | "waitlisted" | null,
     };
   });
 }
@@ -131,11 +116,4 @@ async function getWeekSchedule(
   });
 }
 
-export {
-  formatTime,
-  formatDuration,
-  formatDayLabel,
-  getSchedule,
-  getWeekSchedule,
-  type DaySchedule,
-};
+export { getSchedule, getWeekSchedule, type DaySchedule };
