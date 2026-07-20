@@ -44,19 +44,19 @@ alter table classes enable row level security;
 alter table students enable row level security;
 alter table enrollments enable row level security;
 
--- Public (anon) can READ instructors and classes — needed for the
--- public Schedule page. No write access granted here.
-create policy "anon can read instructors"
+-- Anyone — logged in or not — can READ instructors and classes,
+-- needed for the public Schedule page. No write access granted here.
+create policy "anyone can read instructors"
   on instructors for select
-  to anon
+  to anon, authenticated
   using (true);
 
-create policy "anon can read classes"
+create policy "anyone can read classes"
   on classes for select
-  to anon
+  to anon, authenticated
   using (true);
 
--- students and enrollments have NO anon policies at all.
+-- students and enrollments have NO read policies at all.
 -- All access to those two tables happens either through the
 -- security-definer function below, or later through an
 -- authenticated admin session (policies to be added in step 3

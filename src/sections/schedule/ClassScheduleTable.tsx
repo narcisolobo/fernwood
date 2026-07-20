@@ -1,6 +1,5 @@
-import ClassRow from "./ClassRow";
-import ScheduleControls from "./ScheduleControls";
 import { getWeekSchedule } from "@/lib/schedule";
+import ScheduleControls from "./ScheduleControls";
 import WeekTableBody from "./WeekTableBody";
 
 export const dynamic = "force-dynamic";
@@ -39,10 +38,6 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
                   <th>Actions</th>
                 </tr>
               </thead>
-              {/* One <tbody> per day rather than one giant flat tbody —
-                  lets each day carry its own key cleanly (no need for
-                  an explicit Fragment import), and keeps each day's
-                  rows visually/structurally grouped in the DOM. */}
               {week.map((day) => (
                 <WeekTableBody key={day.date.toISOString()} day={day} />
               ))}
