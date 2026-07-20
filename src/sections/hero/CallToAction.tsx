@@ -13,7 +13,7 @@ function CallToAction() {
           </h2>
           <p className="max-w-[45ch] text-center text-lg lg:text-xl">
             New to Fernwood? Grab a complimentary drop-in and see what the
-            hype&lsquo;s about.
+            hype&apos;s about.
           </p>
           <Link href="/schedule" className="btn btn-primary btn-lg">
             Claim Your First Class

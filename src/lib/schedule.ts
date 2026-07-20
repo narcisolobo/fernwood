@@ -5,10 +5,9 @@ function formatTime(time: string): string {
   // time comes back from Postgres as "HH:MM:SS"
   const [hourStr, minuteStr] = time.split(":");
   const hour = parseInt(hourStr, 10);
-  const minute = minuteStr;
   const period = hour >= 12 ? "pm" : "am";
   const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-  return `${displayHour}:${minute} ${period} PDT`;
+  return `${displayHour}:${minuteStr} ${period} PDT`;
 }
 
 function formatDuration(minutes: number): string {

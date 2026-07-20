@@ -1,7 +1,7 @@
 "use client";
 
 import { IconUser } from "@tabler/icons-react";
-import { Fragment, useActionState, useRef } from "react";
+import { Fragment, useActionState, type RefObject } from "react";
 import { joinClass, type JoinClassState } from "./join-class-action";
 
 interface JoinButtonModalProps {
@@ -9,6 +9,7 @@ interface JoinButtonModalProps {
   classId: string;
   teacher: string;
   status: "open" | "full";
+  dialogRef: RefObject<HTMLDialogElement | null>;
 }
 
 function JoinButtonModal({
@@ -16,8 +17,8 @@ function JoinButtonModal({
   name,
   teacher,
   status,
+  dialogRef,
 }: JoinButtonModalProps) {
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
   const [state, formAction, isPending] = useActionState<
     JoinClassState,
     FormData
@@ -28,7 +29,7 @@ function JoinButtonModal({
   };
 
   return (
-    <dialog id={classId} className="modal" ref={dialogRef}>
+    <dialog className="modal" ref={dialogRef}>
       <div className="modal-box">
         <button
           onClick={closeModal}

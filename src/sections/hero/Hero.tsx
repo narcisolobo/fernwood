@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Pilates from "@/images/pilates.jpg";
 
 function Hero() {
@@ -27,10 +28,12 @@ function Hero() {
                 room to move at your own pace.
               </p>
               <div className="flex flex-col items-center gap-6 lg:flex-row">
-                <button className="btn btn-lg btn-primary">
+                <Link href="/schedule" className="btn btn-lg btn-primary">
                   Book a Drop-in Class
-                </button>
-                <a className="link-primary">View Schedule →</a>
+                </Link>
+                <Link href="/schedule" className="link-primary">
+                  View Schedule →
+                </Link>
               </div>
             </div>
           </div>

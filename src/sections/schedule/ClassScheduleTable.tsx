@@ -1,4 +1,5 @@
 import { getWeekSchedule } from "@/lib/schedule";
+import { fromDateParam } from "@/lib/date-params";
 import ScheduleControls from "./ScheduleControls";
 import WeekTableBody from "./WeekTableBody";
 
@@ -9,13 +10,8 @@ interface ClassScheduleTableProps {
   type?: "reformer" | "mat";
 }
 
-function parseDateStr(dateStr: string): Date {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  return new Date(year, month - 1, day); // local midnight, not UTC
-}
-
 async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
-  const startDate = dateStr ? parseDateStr(dateStr) : new Date();
+  const startDate = dateStr ? fromDateParam(dateStr) : new Date();
   const week = await getWeekSchedule(startDate, type);
 
   return (
