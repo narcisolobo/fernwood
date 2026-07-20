@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { supabaseServerClient } from "@/lib/supabase/server";
 
 export interface JoinClassState {
@@ -39,6 +40,8 @@ export async function joinClass(
   if (!status) {
     return { error: "Something went wrong — please try again." };
   }
+
+  revalidatePath("/schedule");
 
   return { status };
 }
