@@ -1,28 +1,11 @@
 "use client";
 
-import { supabaseBrowserClient } from "@/lib/supabase/client";
-import { type Session } from "@supabase/supabase-js";
+import { useAuth } from "@/hooks/useAuth";
 import { IconAlertSquareRounded } from "@tabler/icons-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 function PleaseSignIn() {
-  const supabase = supabaseBrowserClient();
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
-    });
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => setSession(session),
-    );
-
-    return () => listener.subscription.unsubscribe();
-  }, [supabase.auth]);
+  const { session, loading } = useAuth();
 
   if (loading || session) return null;
 

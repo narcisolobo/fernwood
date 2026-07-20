@@ -5,6 +5,7 @@ import { nunito } from "@/fonts/nunito-sans";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
+import AuthProvider from "@/context/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Fernwood",
@@ -24,7 +25,9 @@ function RootLayout({ children }: RootLayoutProps) {
       className={`${nunito.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <Drawer>{children}</Drawer>
+        <AuthProvider>
+          <Drawer>{children}</Drawer>
+        </AuthProvider>
       </body>
     </html>
   );

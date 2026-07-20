@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabaseBrowserClient } from "@/lib/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 function JoinButton({
   classId,
@@ -10,23 +11,19 @@ function JoinButton({
   classId: string;
   status: "open" | "full";
 }) {
+  const supabase = supabaseBrowserClient();
+  const { session, loading: authLoading } = useAuth();
   const [result, setResult] = useState<"booked" | "waitlisted" | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
-    const supabase = supabaseBrowserClient();
-    // Simple prompt-based capture for the demo — worth replacing with a
-    // real modal/form later, but functionally correct for now.
     const name = window.prompt("Your name:");
     if (!name) return;
-    const email = window.prompt("Your email:");
-    if (!email) return;
 
     setLoading(true);
     const { data, error } = await supabase.rpc("book_class", {
       p_class_id: classId,
       p_student_name: name,
-      p_student_email: email,
     });
     setLoading(false);
 
@@ -56,11 +53,17 @@ function JoinButton({
     );
   }
 
+  // Signed-out users can still see the schedule, but the button is
+  // disabled rather than clickable-then-erroring — book_class would
+  // reject the call anyway (auth.uid() check), this just avoids the
+  // pointless round trip and gives a clearer signal up front.
+  const disabled = loading || authLoading || !session;
+
   return status === "open" ? (
     <button
       className="btn btn-secondary btn-sm btn-soft"
       onClick={handleClick}
-      disabled={loading}
+      disabled={disabled}
     >
       {loading ? "..." : "Join Class"}
     </button>
@@ -68,7 +71,7 @@ function JoinButton({
     <button
       className="btn btn-neutral btn-sm btn-soft"
       onClick={handleClick}
-      disabled={loading}
+      disabled={disabled}
     >
       {loading ? "..." : "Join Waitlist"}
     </button>
