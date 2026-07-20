@@ -1,8 +1,9 @@
 import ClassFilterButtons from "./ClassFilterButtons";
+import PleaseSignIn from "./PleaseSignIn";
 
 function Schedule() {
   return (
-    <section id="schedule" className="flex items-center pt-20 pb-6">
+    <section id="schedule" className="flex items-center pt-20">
       <div className="container mx-auto px-2 md:px-0">
         <h1 className="font-display text-center text-4xl font-semibold uppercase lg:text-6xl">
           Class Schedule
@@ -11,6 +12,7 @@ function Schedule() {
           Reformer, mat, and everything in between.
         </p>
         <ClassFilterButtons />
+        <PleaseSignIn />
       </div>
     </section>
   );

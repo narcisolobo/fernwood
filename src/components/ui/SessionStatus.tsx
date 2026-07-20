@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { type Session } from "@supabase/supabase-js";
-import { supabaseJsClient } from "@/lib/supabase/client";
+import { supabaseBrowserClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 function SessionStatus() {
-  const supabase = supabaseJsClient();
+  const supabase = supabaseBrowserClient();
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
