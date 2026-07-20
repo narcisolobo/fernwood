@@ -1,23 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { type Session } from "@supabase/supabase-js";
+import { useAuth } from "@/hooks/useAuth";
 import { supabaseBrowserClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 function SessionStatus() {
   const supabase = supabaseBrowserClient();
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSession(data.session));
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => setSession(session),
-    );
-
-    return () => listener.subscription.unsubscribe();
-  }, [supabase.auth]);
+  const { session } = useAuth();
 
   return session ? (
     <button className="link link-hover" onClick={() => supabase.auth.signOut()}>
