@@ -131,4 +131,11 @@ async function getWeekSchedule(
   });
 }
 
-export { formatDayLabel, getSchedule, getWeekSchedule, type DaySchedule };
+export {
+  formatTime,
+  formatDuration,
+  formatDayLabel,
+  getSchedule,
+  getWeekSchedule,
+  type DaySchedule,
+};
