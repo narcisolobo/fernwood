@@ -62,8 +62,7 @@ async function getSchedule(
 
   if (classesError) {
     console.error("Failed to load classes:", classesError);
-    throw new Error(`Supabase error: ${classesError.message}`);
-    // return [];
+    return [];
   }
 
   if (!classes || classes.length === 0) return [];
@@ -92,8 +91,6 @@ async function getSchedule(
     const spotsOpen = Math.max(cls.capacity - bookedCount, 0);
     const status: "open" | "full" = spotsOpen > 0 ? "open" : "full";
 
-    // Supabase's TS types return related rows as an array even for a
-    // to-one join in some client versions — guard for both shapes.
     const instructor = Array.isArray(cls.instructors)
       ? cls.instructors[0]
       : cls.instructors;
@@ -111,4 +108,34 @@ async function getSchedule(
   });
 }
 
-export { formatDayLabel, getSchedule };
+interface DaySchedule {
+  date: Date;
+  weekday: string;
+  dateLabel: string;
+  classes: ScheduleClass[];
+}
+
+async function getWeekSchedule(
+  startDate: Date,
+  type?: "reformer" | "mat",
+): Promise<DaySchedule[]> {
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + i);
+    return d;
+  });
+
+  // One query per day, run concurrently rather than sequentially —
+  // each getSchedule call is already a complete, independent unit
+  // of work (classes + enrollments for that single day_of_week).
+  const results = await Promise.all(
+    days.map((date) => getSchedule(date, type)),
+  );
+
+  return days.map((date, i) => {
+    const [weekday, dateLabel] = formatDayLabel(date).split("|");
+    return { date, weekday, dateLabel, classes: results[i] };
+  });
+}
+
+export { formatDayLabel, getSchedule, getWeekSchedule, type DaySchedule };

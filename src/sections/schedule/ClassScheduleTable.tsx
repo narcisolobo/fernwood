@@ -1,6 +1,7 @@
 import ClassRow from "./ClassRow";
 import ScheduleControls from "./ScheduleControls";
-import { getSchedule, formatDayLabel } from "@/lib/schedule";
+import { getWeekSchedule } from "@/lib/schedule";
+import WeekTableBody from "./WeekTableBody";
 
 export const dynamic = "force-dynamic";
 
@@ -9,15 +10,19 @@ interface ClassScheduleTableProps {
   type?: "reformer" | "mat";
 }
 
+function parseDateStr(dateStr: string): Date {
+  const [year, month, day] = dateStr.split("-").map(Number);
+  return new Date(year, month - 1, day); // local midnight, not UTC
+}
+
 async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
-  const date = dateStr ? new Date(dateStr) : new Date();
-  const classes = await getSchedule(date, type);
-  const [weekday, rest] = formatDayLabel(date).split("|");
+  const startDate = dateStr ? parseDateStr(dateStr) : new Date();
+  const week = await getWeekSchedule(startDate, type);
 
   return (
     <section className="pb-20">
-      <div className="container mx-auto mt-4 px-2 md:px-0">
-        <div className="border-base-300 bg-base-100 rounded-box overflow-hidden border">
+      <div className="container mx-auto px-2 md:px-0">
+        <div className="border-base-300 bg-base-100 rounded-box mt-4 overflow-hidden border">
           <div className="flex flex-wrap items-center justify-between gap-4 p-6">
             <h2 className="text-lg font-semibold">Class Schedule</h2>
             <ScheduleControls />
@@ -34,28 +39,13 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td colSpan={6}>
-                    <span className="font-display font-semibold">
-                      {weekday}
-                    </span>{" "}
-                    <span className="text-base-content/60">{rest}</span>
-                  </td>
-                </tr>
-                {classes.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={6}
-                      className="text-base-content/60 py-6 text-center"
-                    >
-                      No classes scheduled this day.
-                    </td>
-                  </tr>
-                ) : (
-                  classes.map((cls) => <ClassRow key={cls.id} {...cls} />)
-                )}
-              </tbody>
+              {/* One <tbody> per day rather than one giant flat tbody —
+                  lets each day carry its own key cleanly (no need for
+                  an explicit Fragment import), and keeps each day's
+                  rows visually/structurally grouped in the DOM. */}
+              {week.map((day) => (
+                <WeekTableBody key={day.date.toISOString()} day={day} />
+              ))}
             </table>
           </div>
         </div>
