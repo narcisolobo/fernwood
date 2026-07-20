@@ -69,25 +69,19 @@ async function getSchedule(
 
   const classIds = classes.map((c) => c.id);
 
-  const { data: enrollments, error: enrollmentsError } = await supabase
-    .from("enrollments")
-    .select("class_id, status")
-    .in("class_id", classIds);
+  const { data: counts, error: countsError } = await supabase.rpc(
+    "get_enrollment_counts",
+    { p_class_ids: classIds },
+  );
 
-  if (enrollmentsError) {
-    console.error("Failed to load enrollments:", enrollmentsError);
+  if (countsError) {
+    console.error("Failed to load enrollment counts:", countsError);
   }
 
   return classes.map((cls) => {
-    const classEnrollments = (enrollments ?? []).filter(
-      (e) => e.class_id === cls.id,
-    );
-    const bookedCount = classEnrollments.filter(
-      (e) => e.status === "booked",
-    ).length;
-    const waitlistCount = classEnrollments.filter(
-      (e) => e.status === "waitlisted",
-    ).length;
+    const classCounts = (counts ?? []).find((c) => c.class_id === cls.id);
+    const bookedCount = classCounts?.booked_count ?? 0;
+    const waitlistCount = classCounts?.waitlisted_count ?? 0;
     const spotsOpen = Math.max(cls.capacity - bookedCount, 0);
     const status: "open" | "full" = spotsOpen > 0 ? "open" : "full";
 

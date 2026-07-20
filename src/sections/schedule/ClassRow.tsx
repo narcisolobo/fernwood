@@ -1,5 +1,5 @@
-import { type ScheduleClass } from "./schedule-data";
 import JoinButton from "./JoinButton";
+import { type ScheduleClass } from "./schedule-data";
 
 function ClassRow({
   id,
@@ -25,7 +25,12 @@ function ClassRow({
         </p>
       </td>
       <td>
-        <JoinButton classId={id.toString()} status={status} />
+        <JoinButton
+          name={name}
+          classId={id.toString()}
+          teacher={teacher}
+          status={status}
+        />
       </td>
     </tr>
   );

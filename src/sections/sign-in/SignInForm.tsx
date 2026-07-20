@@ -12,6 +12,7 @@ function SignInForm() {
         <label className="input mb-2">
           <IconMail />
           <input
+            autoComplete="email"
             name="email"
             type="email"
             className="grow"
