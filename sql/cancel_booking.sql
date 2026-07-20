@@ -30,16 +30,26 @@ begin
   -- same class can't interleave with the promotion logic below.
   perform 1 from classes where id = p_class_id for update;
 
-  update enrollments
-  set status = 'cancelled'
+  -- Capture the PRE-update status. RETURNING on the update below would
+  -- give the NEW value ('cancelled') every time, not the original one
+  -- — that was the actual bug: the promotion check below never fired
+  -- because it was comparing against a value that could never be
+  -- 'booked' post-update.
+  select status into v_cancelled_status
+  from enrollments
   where student_id = v_student_id
     and class_id = p_class_id
-    and status in ('booked', 'waitlisted')
-  returning status into v_cancelled_status;
+    and status in ('booked', 'waitlisted');
 
   if v_cancelled_status is null then
     raise exception 'No active booking found for this class.';
   end if;
+
+  update enrollments
+  set status = 'cancelled'
+  where student_id = v_student_id
+    and class_id = p_class_id
+    and status in ('booked', 'waitlisted');
 
   -- Only a freed *booked* spot triggers promotion. Cancelling from
   -- the waitlist doesn't open anything up.
