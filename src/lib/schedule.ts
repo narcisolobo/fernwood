@@ -1,4 +1,4 @@
-import { supabaseJsClient } from "@/lib/supabase/client";
+import { supabaseBrowserClient } from "@/lib/supabase/client";
 import { type ScheduleClass } from "@/sections/schedule/schedule-data";
 
 function formatTime(time: string): string {
@@ -33,7 +33,7 @@ async function getSchedule(
   date: Date,
   type?: "reformer" | "mat",
 ): Promise<ScheduleClass[]> {
-  const supabase = supabaseJsClient();
+  const supabase = supabaseBrowserClient();
   const dayOfWeek = date.getDay(); // 0 (Sun) .. 6 (Sat) — matches our schema convention
 
   let query = supabase

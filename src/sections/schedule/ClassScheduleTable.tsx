@@ -16,7 +16,7 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
 
   return (
     <section className="pb-20">
-      <div className="container mx-auto px-2 md:px-0">
+      <div className="container mx-auto mt-4 px-2 md:px-0">
         <div className="border-base-300 bg-base-100 rounded-box overflow-hidden border">
           <div className="flex flex-wrap items-center justify-between gap-4 p-6">
             <h2 className="text-lg font-semibold">Class Schedule</h2>
