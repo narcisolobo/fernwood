@@ -13,7 +13,7 @@ function MembershipCard({
       className={`rounded-box flex flex-col p-6 shadow ${
         highlighted
           ? "bg-neutral text-neutral-content"
-          : "border-base-300 border"
+          : "border-base-300 bg-base-100 border"
       }`}
     >
       <h3 className="font-semibold">{name}</h3>
@@ -34,8 +34,8 @@ function MembershipCard({
         ))}
       </ul>
       <button
-        className={`btn mt-6 w-full ${
-          highlighted ? "btn-primary" : "btn-outline"
+        className={`btn btn-primary mt-6 w-full ${
+          highlighted ? "" : "btn-outline"
         }`}
       >
         {cta}

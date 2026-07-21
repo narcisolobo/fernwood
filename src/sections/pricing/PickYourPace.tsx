@@ -8,7 +8,7 @@ function PickYourPace() {
     >
       <div className="container mx-auto px-2 md:px-0">
         <div className="text-neutral-content flex flex-col items-center justify-center gap-6">
-          <h2 className="font-display text-3xl font-semibold lg:text-5xl">
+          <h2 className="font-display text-center text-3xl font-semibold lg:text-5xl">
             Not sure which plan fits?
           </h2>
           <p className="max-w-[45ch] text-center text-lg lg:text-xl">

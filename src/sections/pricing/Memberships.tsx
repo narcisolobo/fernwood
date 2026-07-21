@@ -49,7 +49,7 @@ const plans: MembershipPlan[] = [
 
 function Memberships() {
   return (
-    <section id="memberships" className="flex items-center py-20">
+    <section id="memberships" className="bg-base-200 flex items-center py-20">
       <div className="container mx-auto px-2 md:px-0">
         <h2 className="font-display text-center text-4xl font-semibold lg:text-6xl">
           Memberships

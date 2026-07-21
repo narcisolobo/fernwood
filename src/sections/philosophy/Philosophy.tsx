@@ -54,7 +54,10 @@ const philosophy: PhilosophyItem[] = [
 
 function Philosophy() {
   return (
-    <section id="philosophy" className="flex min-h-[70vh] items-center py-4">
+    <section
+      id="philosophy"
+      className="bg-base-200 flex min-h-[70vh] items-center py-4"
+    >
       <div className="container mx-auto px-2 md:px-0">
         <h2 className="font-display mb-6 text-center text-3xl font-semibold lg:text-5xl">
           Train with intention.
