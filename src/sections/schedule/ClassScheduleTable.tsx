@@ -3,6 +3,7 @@ import { getMyStudentName } from "@/lib/student";
 import { fromDateParam } from "@/lib/date-params";
 import ScheduleControls from "./ScheduleControls";
 import WeekTableBody from "./WeekTableBody";
+import WeekCardList from "./WeekCardList";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +27,9 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
             <h2 className="text-lg font-semibold">Class Schedule</h2>
             <ScheduleControls />
           </div>
-          <div className="overflow-x-auto">
+
+          {/* Desktop: table, columns, shared header row */}
+          <div className="hidden overflow-x-auto md:block">
             <table className="table">
               <thead>
                 <tr>
@@ -46,6 +49,18 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
                 />
               ))}
             </table>
+          </div>
+
+          {/* Mobile: stacked day-grouped cards, no column headers */}
+          <div className="flex flex-col px-4 pb-4 md:hidden">
+            {week.map((day, index) => (
+              <WeekCardList
+                key={day.date.toISOString()}
+                day={day}
+                defaultName={defaultName}
+                isLast={index === week.length - 1}
+              />
+            ))}
           </div>
         </div>
       </div>

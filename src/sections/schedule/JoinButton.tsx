@@ -13,6 +13,7 @@ interface JoinButtonProps {
   myStatus: "booked" | "waitlisted" | null;
   date: Date;
   defaultName: string | null;
+  className?: string;
 }
 
 function JoinButton({
@@ -23,6 +24,7 @@ function JoinButton({
   myStatus,
   date,
   defaultName,
+  className = "",
 }: JoinButtonProps) {
   const { session, loading: authLoading } = useAuth();
   const dialogRef = useRef<HTMLDialogElement | null>(null);
@@ -33,7 +35,7 @@ function JoinButton({
     return (
       <Fragment>
         <button
-          className="btn btn-neutral btn-sm btn-soft whitespace-nowrap"
+          className={`btn btn-neutral btn-sm btn-soft whitespace-nowrap ${className}`}
           onClick={() => dialogRef.current?.showModal()}
           disabled={disabled}
           suppressHydrationWarning
@@ -56,7 +58,7 @@ function JoinButton({
       <button
         className={`btn btn-sm btn-soft whitespace-nowrap ${
           status === "open" ? "btn-secondary" : "btn-neutral"
-        }`}
+        } ${className}`}
         onClick={() => dialogRef.current?.showModal()}
         disabled={disabled}
         suppressHydrationWarning
