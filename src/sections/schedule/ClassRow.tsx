@@ -21,7 +21,7 @@ function ClassRow({
 }: ClassRowProps) {
   return (
     <tr>
-      <td>{time}</td>
+      <td className="whitespace-nowrap">{time}</td>
       <td className="font-semibold">{name}</td>
       <td>{teacher}</td>
       <td>{duration}</td>
