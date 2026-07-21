@@ -10,6 +10,7 @@ interface JoinButtonModalProps {
   teacher: string;
   status: "open" | "full";
   dialogRef: RefObject<HTMLDialogElement | null>;
+  defaultName: string | null;
 }
 
 function JoinButtonModal({
@@ -18,6 +19,7 @@ function JoinButtonModal({
   teacher,
   status,
   dialogRef,
+  defaultName,
 }: JoinButtonModalProps) {
   const [state, formAction, isPending] = useActionState<
     JoinClassState,
@@ -73,6 +75,7 @@ function JoinButtonModal({
                   type="text"
                   className="grow"
                   placeholder="Name"
+                  defaultValue={defaultName ?? undefined}
                   required
                 />
               </label>

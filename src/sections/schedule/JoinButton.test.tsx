@@ -19,6 +19,7 @@ function renderJoinButton({
   loading = false,
   status = "open" as "open" | "full",
   myStatus = null as "booked" | "waitlisted" | null,
+  defaultName = null as string | null,
 } = {}) {
   return render(
     <AuthContext.Provider value={{ session, loading }}>
@@ -29,6 +30,7 @@ function renderJoinButton({
         status={status}
         myStatus={myStatus}
         date={testDate}
+        defaultName={defaultName}
       />
     </AuthContext.Provider>,
   );

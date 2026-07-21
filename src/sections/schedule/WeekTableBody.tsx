@@ -3,9 +3,10 @@ import ClassRow from "./ClassRow";
 
 interface WeekTableBodyProps {
   day: DaySchedule;
+  defaultName: string | null;
 }
 
-function WeekTableBody({ day }: WeekTableBodyProps) {
+function WeekTableBody({ day, defaultName }: WeekTableBodyProps) {
   return (
     <tbody>
       <tr className="bg-base-200">
@@ -25,7 +26,12 @@ function WeekTableBody({ day }: WeekTableBodyProps) {
         </tr>
       ) : (
         day.classes.map((cls) => (
-          <ClassRow key={cls.id} date={day.date} {...cls} />
+          <ClassRow
+            key={cls.id}
+            date={day.date}
+            defaultName={defaultName}
+            {...cls}
+          />
         ))
       )}
     </tbody>

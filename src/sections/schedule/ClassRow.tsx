@@ -3,6 +3,7 @@ import { type ScheduleClass } from "./schedule-data";
 
 interface ClassRowProps extends ScheduleClass {
   date: Date;
+  defaultName: string | null;
 }
 
 function ClassRow({
@@ -16,6 +17,7 @@ function ClassRow({
   waitlistCount,
   myStatus,
   date,
+  defaultName,
 }: ClassRowProps) {
   return (
     <tr>
@@ -38,6 +40,7 @@ function ClassRow({
           status={status}
           myStatus={myStatus}
           date={date}
+          defaultName={defaultName}
         />
       </td>
     </tr>

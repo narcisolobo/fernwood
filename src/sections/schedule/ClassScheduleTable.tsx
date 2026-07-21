@@ -1,4 +1,5 @@
 import { getWeekSchedule } from "@/lib/schedule";
+import { getMyStudentName } from "@/lib/student";
 import { fromDateParam } from "@/lib/date-params";
 import ScheduleControls from "./ScheduleControls";
 import WeekTableBody from "./WeekTableBody";
@@ -12,7 +13,10 @@ interface ClassScheduleTableProps {
 
 async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
   const startDate = dateStr ? fromDateParam(dateStr) : new Date();
-  const week = await getWeekSchedule(startDate, type);
+  const [week, defaultName] = await Promise.all([
+    getWeekSchedule(startDate, type),
+    getMyStudentName(),
+  ]);
 
   return (
     <section className="pb-20">
@@ -35,7 +39,11 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
                 </tr>
               </thead>
               {week.map((day) => (
-                <WeekTableBody key={day.date.toISOString()} day={day} />
+                <WeekTableBody
+                  key={day.date.toISOString()}
+                  day={day}
+                  defaultName={defaultName}
+                />
               ))}
             </table>
           </div>

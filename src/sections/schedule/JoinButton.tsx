@@ -12,6 +12,7 @@ interface JoinButtonProps {
   status: "open" | "full";
   myStatus: "booked" | "waitlisted" | null;
   date: Date;
+  defaultName: string | null;
 }
 
 function JoinButton({
@@ -21,6 +22,7 @@ function JoinButton({
   status,
   myStatus,
   date,
+  defaultName,
 }: JoinButtonProps) {
   const { session, loading: authLoading } = useAuth();
   const dialogRef = useRef<HTMLDialogElement | null>(null);
@@ -69,6 +71,7 @@ function JoinButton({
         status={status}
         teacher={teacher}
         dialogRef={dialogRef}
+        defaultName={defaultName}
       />
     </Fragment>
   );

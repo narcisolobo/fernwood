@@ -161,6 +161,10 @@ export type Database = {
           status: string
         }[]
       }
+      get_my_student_name: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
