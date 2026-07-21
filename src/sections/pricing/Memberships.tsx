@@ -51,10 +51,10 @@ function Memberships() {
   return (
     <section id="memberships" className="flex items-center py-20">
       <div className="container mx-auto px-2 md:px-0">
-        <h2 className="font-display text-center text-4xl font-semibold uppercase lg:text-6xl">
+        <h2 className="font-display text-center text-4xl font-semibold lg:text-6xl">
           Memberships
         </h2>
-        <p className="text-base-content/70 mx-auto mt-4 max-w-[50ch] text-center">
+        <p className="text-base-content/70 mx-auto mt-4 max-w-[50ch] text-center text-lg">
           For the ones who show up every week.
         </p>
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">

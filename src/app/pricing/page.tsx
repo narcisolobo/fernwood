@@ -1,4 +1,5 @@
 import Memberships from "@/sections/pricing/Memberships";
+import PickYourPace from "@/sections/pricing/PickYourPace";
 import Pricing from "@/sections/pricing/Pricing";
 
 function PricingPage() {
@@ -6,6 +7,7 @@ function PricingPage() {
     <main>
       <Pricing />
       <Memberships />
+      <PickYourPace />
     </main>
   );
 }

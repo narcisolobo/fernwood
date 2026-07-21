@@ -1,9 +1,10 @@
 import Fern from "@/images/brand/fern.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 function Footer() {
   return (
-    <div className="bg-base-200 px-2 md:px-0">
+    <div className="bg-base-300 px-2 md:px-0">
       <div className="container mx-auto">
         <footer className="footer sm:footer-horizontal py-10">
           <aside>
@@ -30,14 +31,28 @@ function Footer() {
             </p>
           </aside>
           <nav>
-            <h4 className="footer-title">Site Map</h4>
-            <a className="link link-hover">Schedule</a>
-            <a className="link link-hover">Pricing</a>
-            <a className="link link-hover">Instructors</a>
-            <a className="link link-hover">Contact</a>
+            <h3 className="footer-title">Site Map</h3>
+            <Link href="/" className="link link-hover">
+              Home
+            </Link>
+            <Link href="/schedule" className="link link-hover">
+              Schedule
+            </Link>
+            <Link href="/pricing" className="link link-hover">
+              Pricing
+            </Link>
+            <Link href="/instructors" className="link link-hover">
+              Instructors
+            </Link>
+            <Link href="/about" className="link link-hover">
+              About Us
+            </Link>
+            <Link href="/contact" className="link link-hover">
+              Contact Us
+            </Link>
           </nav>
           <nav>
-            <h4 className="footer-title">Social</h4>
+            <h3 className="footer-title">Social</h3>
             <div className="grid grid-flow-col gap-4">
               <a>
                 <svg

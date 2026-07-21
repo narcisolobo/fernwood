@@ -8,10 +8,10 @@ function ReadyToMove() {
     >
       <div className="container mx-auto px-2 md:px-0">
         <div className="text-neutral-content flex flex-col items-center justify-center gap-6">
-          <h2 className="font-display text-2xl font-semibold uppercase lg:text-3xl">
+          <h2 className="font-display text-3xl font-semibold lg:text-5xl">
             Ready to move?
           </h2>
-          <p className="text-neutral-content/70 lg:text-md max-w-[45ch] text-center text-sm">
+          <p className="max-w-[45ch] text-center text-lg lg:text-xl">
             Your first class is on us. No membership required.
           </p>
           <Link href="/schedule" className="btn btn-primary btn-lg">
