@@ -1,11 +1,11 @@
 import Drawer from "@/components/layout/Drawer";
+import Providers from "@/context/Providers";
 import { fraunces } from "@/fonts/fraunces";
 import { geistMono } from "@/fonts/geist-mono";
 import { nunito } from "@/fonts/nunito-sans";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
-import AuthProvider from "@/context/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Fernwood",
@@ -25,9 +25,9 @@ function RootLayout({ children }: RootLayoutProps) {
       className={`${nunito.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <AuthProvider>
+        <Providers>
           <Drawer>{children}</Drawer>
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   );
