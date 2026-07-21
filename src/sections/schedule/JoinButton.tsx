@@ -33,7 +33,7 @@ function JoinButton({
     return (
       <Fragment>
         <button
-          className="btn btn-neutral btn-sm btn-soft"
+          className="btn btn-neutral btn-sm btn-soft whitespace-nowrap"
           onClick={() => dialogRef.current?.showModal()}
           disabled={disabled}
           suppressHydrationWarning
@@ -54,11 +54,9 @@ function JoinButton({
   return (
     <Fragment>
       <button
-        className={
-          status === "open"
-            ? "btn btn-secondary btn-sm btn-soft"
-            : "btn btn-neutral btn-sm btn-soft"
-        }
+        className={`btn btn-sm btn-soft whitespace-nowrap ${
+          status === "open" ? "btn-secondary" : "btn-neutral"
+        }`}
         onClick={() => dialogRef.current?.showModal()}
         disabled={disabled}
         suppressHydrationWarning
