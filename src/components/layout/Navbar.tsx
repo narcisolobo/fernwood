@@ -6,17 +6,6 @@ import Hamburger from "../ui/Hamburger";
 import SessionStatus from "../ui/SessionStatus";
 import TrackedToMatch from "./TrackedToMatch";
 
-function BookClassButton() {
-  return (
-    <Link
-      href="/schedule"
-      className="btn btn-primary btn-lg hidden md:inline-flex"
-    >
-      Book a Class
-    </Link>
-  );
-}
-
 function Navbar() {
   return (
     <nav className="bg-base-200 flex w-full items-center py-2 shadow">
@@ -31,7 +20,7 @@ function Navbar() {
                     src={Fern}
                     alt="Fernwood Fern Logo"
                     loading="eager"
-                    className="hidden md:block"
+                    className="h-auto w-8 md:w-10"
                   />
                 </div>
                 <TrackedToMatch
@@ -46,7 +35,12 @@ function Navbar() {
           <div className="hidden flex-none lg:block">
             <DesktopNav />
           </div>
-          <BookClassButton />
+          <Link
+            href="/schedule"
+            className="btn btn-primary btn-lg hidden md:inline-flex"
+          >
+            Book a Class
+          </Link>
           <div className="hidden md:inline-flex">
             <div className="divider divider-horizontal md:flex"></div>
             <SessionStatus />
