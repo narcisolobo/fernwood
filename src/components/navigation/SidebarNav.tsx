@@ -1,15 +1,23 @@
+import Link from "next/link";
+import SessionStatus from "../ui/SessionStatus";
 import { navItems } from "./nav-items";
 
 function SidebarNav() {
   return (
-    <ul className="menu bg-base-200 min-h-full w-full p-4">
+    <ul className="menu bg-base-200 min-h-full w-80 p-4 text-lg">
       {navItems.map((item) => (
-        <li key={item.href} className="text-lg">
-          <a href={item.href}>{item.label}</a>
+        <li key={item.href}>
+          <Link href={item.href}>{item.label}</Link>
         </li>
       ))}
-      <li className="pt-4">
-        <button className="btn btn-primary">Book a Class</button>
+      <li className="w-fit pt-4">
+        <Link href="/schedule" className="btn btn-primary">
+          Book a Class
+        </Link>
+      </li>
+      <div className="divider"></div>
+      <li>
+        <SessionStatus />
       </li>
     </ul>
   );

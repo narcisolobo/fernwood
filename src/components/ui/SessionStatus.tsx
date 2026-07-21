@@ -13,9 +13,7 @@ function SessionStatus() {
       Sign out
     </button>
   ) : (
-    <Link className="link link-hover" href="/auth/sign-in">
-      Sign in
-    </Link>
+    <Link href="/auth/sign-in">Sign in</Link>
   );
 }
 

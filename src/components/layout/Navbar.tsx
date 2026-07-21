@@ -4,12 +4,15 @@ import Link from "next/link";
 import DesktopNav from "../navigation/DesktopNav";
 import Hamburger from "../ui/Hamburger";
 import SessionStatus from "../ui/SessionStatus";
+import TrackedToMatch from "./TrackedToMatch";
 
 function BookClassButton() {
   return (
-    <Link href="/schedule" className="btn btn-primary btn-lg">
-      <span className="lg:hidden">Book</span>
-      <span className="hidden lg:inline">Book a Class</span>
+    <Link
+      href="/schedule"
+      className="btn btn-primary btn-lg hidden md:inline-flex"
+    >
+      Book a Class
     </Link>
   );
 }
@@ -22,20 +25,21 @@ function Navbar() {
           <Hamburger />
           <div className="flex-1">
             <Link href="/">
-              <div id="brand" className="flex items-center gap-1">
-                <Image
-                  src={Fern}
-                  alt="Fernwood Fern Logo"
-                  loading="eager"
-                  className="hidden md:block"
+              <div id="brand" className="relative flex items-center gap-1">
+                <div className="flex-none">
+                  <Image
+                    src={Fern}
+                    alt="Fernwood Fern Logo"
+                    loading="eager"
+                    className="hidden md:block"
+                  />
+                </div>
+                <TrackedToMatch
+                  reference="Fernwood"
+                  target="Pilates Studio"
+                  referenceClassName="font-display text-xl leading-4 font-semibold uppercase md:text-2xl"
+                  targetClassName="font-sans text-sm font-light uppercase md:text-lg"
                 />
-                <p className="font-display flex-1 translate-1.5 text-xl leading-4 font-semibold uppercase lg:text-2xl">
-                  Fernwood
-                  <br />
-                  <span className="font-sans text-lg font-light tracking-wider uppercase">
-                    Pilates Studio
-                  </span>
-                </p>
               </div>
             </Link>
           </div>
@@ -43,8 +47,10 @@ function Navbar() {
             <DesktopNav />
           </div>
           <BookClassButton />
-          <div className="divider divider-horizontal hidden md:flex"></div>
-          <SessionStatus />
+          <div className="hidden md:inline-flex">
+            <div className="divider divider-horizontal md:flex"></div>
+            <SessionStatus />
+          </div>
         </div>
       </div>
     </nav>
