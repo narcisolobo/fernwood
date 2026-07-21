@@ -63,10 +63,10 @@ function Pricing() {
   return (
     <section id="pricing" className="flex items-center py-20">
       <div className="container mx-auto px-2 md:px-0">
-        <h1 className="font-display text-center text-4xl font-semibold uppercase lg:text-6xl">
+        <h1 className="font-display text-center text-4xl font-semibold lg:text-6xl">
           Pricing
         </h1>
-        <p className="text-base-content/70 mx-auto mt-4 max-w-[50ch] text-center">
+        <p className="text-base-content/70 mx-auto mt-4 max-w-[50ch] text-center text-lg">
           No contracts, no hidden fees. Pick what fits your schedule — switch
           anytime.
         </p>

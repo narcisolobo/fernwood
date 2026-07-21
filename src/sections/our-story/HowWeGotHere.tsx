@@ -38,9 +38,12 @@ function HowWeGotHere() {
       className="bg-base-200 flex items-center py-20"
     >
       <div className="container mx-auto px-2 md:px-0">
-        <h2 className="font-display text-center text-2xl font-semibold uppercase lg:text-4xl">
+        <h2 className="font-display text-center text-2xl font-semibold lg:text-4xl">
           How We Got Here
         </h2>
+        <p className="text-base-content/70 mx-auto mt-4 max-w-[50ch] text-center text-lg">
+          From one instructor to a full studio.
+        </p>
         <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {timeline.map((item) => (
             <div key={item.year}>

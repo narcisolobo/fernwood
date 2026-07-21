@@ -30,7 +30,7 @@ function FAQ() {
   return (
     <section id="faq" className="bg-base-200 flex items-center py-20">
       <div className="container mx-auto px-2 md:px-0">
-        <h2 className="font-display text-center text-2xl font-semibold uppercase lg:text-4xl">
+        <h2 className="font-display text-center text-2xl font-semibold lg:text-4xl">
           FAQ
         </h2>
         <div className="mx-auto mt-16 flex max-w-2xl flex-col gap-4">
