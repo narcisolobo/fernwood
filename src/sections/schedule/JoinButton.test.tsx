@@ -100,30 +100,36 @@ describe("JoinButton", () => {
     ).toBeInTheDocument();
   });
 
-  it("shows 'Class ended' and disables the button once the class has ended", () => {
+  it("shows 'Enrollment Closed' and disables the button once the class has ended", () => {
     renderJoinButton({ session: fakeSession, status: "open", hasEnded: true });
-    expect(screen.getByRole("button", { name: "Class ended" })).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "Enrollment Closed" }),
+    ).toBeDisabled();
   });
 
-  it("shows 'Class ended' instead of 'Cancel Booking' once a booked class has ended", () => {
+  it("shows 'Enrollment Closed' instead of 'Cancel Booking' once a booked class has ended", () => {
     renderJoinButton({
       session: fakeSession,
       myStatus: "booked",
       hasEnded: true,
     });
-    expect(screen.getByRole("button", { name: "Class ended" })).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "Enrollment Closed" }),
+    ).toBeDisabled();
     expect(
       screen.queryByRole("button", { name: "Cancel Booking" }),
     ).not.toBeInTheDocument();
   });
 
-  it("shows 'Class ended' instead of 'Leave Waitlist' once a waitlisted class has ended", () => {
+  it("shows 'Enrollment Closed' instead of 'Leave Waitlist' once a waitlisted class has ended", () => {
     renderJoinButton({
       session: fakeSession,
       myStatus: "waitlisted",
       hasEnded: true,
     });
-    expect(screen.getByRole("button", { name: "Class ended" })).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "Enrollment Closed" }),
+    ).toBeDisabled();
     expect(
       screen.queryByRole("button", { name: "Leave Waitlist" }),
     ).not.toBeInTheDocument();

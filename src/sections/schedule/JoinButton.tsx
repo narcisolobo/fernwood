@@ -41,7 +41,7 @@ function JoinButton({
         aria-disabled="true"
         suppressHydrationWarning
       >
-        Class ended
+        Enrollment Closed
       </button>
     );
   }
