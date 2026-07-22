@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import { useDrawer } from "@/hooks/useDrawer";
 import { ReactNode } from "react";
+import Author from "./Author";
 
 interface DrawerProps {
   children: ReactNode;
@@ -25,6 +26,7 @@ function Drawer({ children }: DrawerProps) {
         <Navbar />
         {children}
         <Footer />
+        <Author />
       </div>
       <Sidebar />
     </div>
