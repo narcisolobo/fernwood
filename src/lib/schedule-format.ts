@@ -33,4 +33,27 @@ function formatConfirmationDate(date: Date): string {
   });
 }
 
-export { formatTime, formatDuration, formatDayLabel, formatConfirmationDate };
+function hasClassEnded(
+  date: Date,
+  startTime: string,
+  now: Date = new Date(),
+): boolean {
+  const [hour, minute, second] = startTime.split(":").map(Number);
+  const startsAt = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    hour,
+    minute,
+    second,
+  );
+  return startsAt < now;
+}
+
+export {
+  formatTime,
+  formatDuration,
+  formatDayLabel,
+  formatConfirmationDate,
+  hasClassEnded,
+};

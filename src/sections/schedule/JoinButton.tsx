@@ -13,6 +13,7 @@ interface JoinButtonProps {
   myStatus: "booked" | "waitlisted" | null;
   date: Date;
   defaultName: string | null;
+  hasEnded: boolean;
   className?: string;
 }
 
@@ -24,12 +25,26 @@ function JoinButton({
   myStatus,
   date,
   defaultName,
+  hasEnded,
   className = "",
 }: JoinButtonProps) {
   const { session, loading: authLoading } = useAuth();
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const disabled = authLoading || !session;
+
+  if (hasEnded) {
+    return (
+      <button
+        className={`btn btn-neutral btn-sm btn-soft whitespace-nowrap ${className}`}
+        disabled
+        aria-disabled="true"
+        suppressHydrationWarning
+      >
+        Class ended
+      </button>
+    );
+  }
 
   if (myStatus) {
     return (

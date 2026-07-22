@@ -1,6 +1,11 @@
 import { supabaseServerClient } from "@/lib/supabase/server";
 import { type ScheduleClass } from "@/sections/schedule/schedule-data";
-import { formatTime, formatDuration, formatDayLabel } from "./schedule-format";
+import {
+  formatTime,
+  formatDuration,
+  formatDayLabel,
+  hasClassEnded,
+} from "./schedule-format";
 
 async function getSchedule(
   date: Date,
@@ -82,6 +87,7 @@ async function getSchedule(
       spotsOpen,
       waitlistCount,
       myStatus: myStatus as "booked" | "waitlisted" | null,
+      hasEnded: hasClassEnded(date, cls.start_time),
     };
   });
 }
