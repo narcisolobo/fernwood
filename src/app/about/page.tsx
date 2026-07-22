@@ -11,6 +11,7 @@ const metadata: Metadata = {
 };
 
 function AboutUsPage() {
+  throw new Error("Oops");
   return (
     <main className="flex-1">
       <OurStory />
