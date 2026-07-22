@@ -12,6 +12,16 @@ export const metadata: Metadata = {
     template: "%s | Fernwood Pilates Studio",
     default: "Fernwood Pilates Studio",
   },
+  authors: [
+    {
+      url: "https://narcisolobo.com",
+      name: "Narciso Lobo",
+    },
+  ],
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 interface RootLayoutProps {
