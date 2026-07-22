@@ -11,7 +11,7 @@
 
 - [x] **`robots`** — explicit `robots.txt` and/or per-page meta robots directives
 - [x] **`description`** — per-page meta descriptions (currently unset/default)
-- [ ] **Favicon/icons** — favicon plus any additional sizes (apple-touch-icon, etc.)
+- [x] **Favicon/icons** — favicon plus any additional sizes (apple-touch-icon, etc.)
 - [ ] **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
 - [ ] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page where it matters (Home at minimum; consider Schedule/Pricing too)
 
@@ -21,7 +21,7 @@
 
 ### 4. Error handling & loading states — required before deployment
 
-- [ ] **`error.tsx`** at the app root — an on-brand error boundary for uncaught failures, matching `not-found.tsx`'s styling. Genuinely higher-stakes than it sounds: `book_class`/`cancel_booking` are live mutations against a real Supabase project that's already had one real outage during this build. Without this, any unhandled failure falls through to Next.js's default generic error screen.
+- [x] **`error.tsx`** at the app root — an on-brand error boundary for uncaught failures, matching `not-found.tsx`'s styling. Genuinely higher-stakes than it sounds: `book_class`/`cancel_booking` are live mutations against a real Supabase project that's already had one real outage during this build. Without this, any unhandled failure falls through to Next.js's default generic error screen.
 - [ ] **`loading.tsx` for the Schedule route** — `ClassScheduleTable` is `force-dynamic` with real async Supabase calls and currently has no fallback shown while that resolves; matters more in production (real network latency) than it did on localhost.
 - [ ] `global-error.tsx` (root-layout-level crashes) — deferred to Post-Deployment, rarer edge case, lower priority than the two above.
 
