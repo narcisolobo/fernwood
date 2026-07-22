@@ -17,36 +17,49 @@
 - **Testing**: switched to test-first for anything with knowable-in-advance behavior (date parsing, formatting helpers, Server Action validation, component branching on auth/enrollment state) — `date-params.test.ts`, `schedule.test.ts`, `join-class-action.test.ts`, `JoinButton.test.tsx`, `ScheduleControls.test.tsx`, `ClassFilterButtons.test.tsx`
 - **`CLAUDE.md`** written — security architecture rules (no direct RLS on `students`/`enrollments`, ever), the date-parsing footgun, server/browser client usage, the URL-param filter pattern
 - **`README.md`** written — project description, real GitHub "About" tagline, tech stack, architecture notes, status
-- **Accessibility/SEO heading pass**: confirmed every page has exactly one `<h1>` and no duplicate/skipped levels in main content; footer's heading currently sits at `<h4>` with no `<h3>` anywhere on the site — identified fix is demoting it to `<h3>`, not yet applied
+- **Accessibility/SEO heading pass**: confirmed every page has exactly one `<h1>` and no duplicate/skipped levels in main content; footer's heading demoted from `<h4>` to `<h3>`, closing the site-wide skip identified in the audit
 - **Keyboard-accessible mobile drawer**: state moved into `DrawerContext`/`DrawerProvider`/`useDrawer`; closes on nav-link click; Escape-to-close matching WAI-ARIA APG's dismissal pattern; focus returns to the trigger on close; hamburger trigger swapped from a `<label>` to a real `<button>` (labels don't respond to Enter/Space, only click — the previous trigger was silently unreachable via keyboard)
 - **`TrackedToMatch` component**: auto-computes letter-spacing so the "Pilates Studio" tagline matches the rendered width of "Fernwood" above it, recalculating on resize/font-load rather than a hand-tuned value per breakpoint
+- **Name pre-fill**: `get_my_student_name` RPC deployed; `defaultName` threaded through `ClassScheduleTable` → `JoinButtonModal`, confirmed deployed and tested, not just written. Accepted behavior: editing the pre-filled name overwrites `students.name` going forward, same as `book_class`'s existing `on conflict` logic — intentional, not a bug
+- **Mobile schedule layout**: `ClassScheduleTable` renders two parallel views off the same fetched week data — the existing `<table>` (`WeekTableBody`/`ClassRow`) at `md:` and up, a new stacked-card list (`WeekCardList`/`ClassCard`) below it, following the Fitmix reference. `JoinButton` reused as-is in both, with an added optional `className` for full-width on mobile
+- **Old-brand reference sweep**: checked for leftover "Neon"/`neon-glow`-era references (CSS utility names, image alt text, etc.) across the codebase — clean
 
 ## Remaining
 
 ### 1. Footer edits
-- Demote footer section heading from `<h4>` to `<h3>` (closes the skip identified in the heading audit)
+
 - Add a brief, plain-language cookie disclosure line — no consent banner needed (session/auth cookies only, no analytics/tracking), just a short note per ePrivacy's "strictly necessary" disclosure norm
 
-### 2. Verify name pre-fill
-- `get_my_student_name` RPC + threading `defaultName` through `ClassScheduleTable` → `JoinButtonModal` was handed to Claude Code as a prompt — confirm it's deployed and actually tested, not just written
-- Known accepted behavior: editing the pre-filled name overwrites `students.name` going forward (same as `book_class`'s existing `on conflict` logic) — this is intentional, not a bug to fix
+### 2. Google OAuth (optional convenience layer on top of magic link)
 
-### 3. Google OAuth (optional convenience layer on top of magic link)
 - Requires external setup: Google Cloud OAuth credentials, added to Supabase Auth provider settings
 - `book_class` name handling: fall back to `user_metadata.full_name` when available, so Google sign-ins skip the name prompt magic-link users still get
 
-### 4. Mobile / responsive polish — current focus
-- Schedule table needs a real mobile layout (stacked rows, no column headers, following the Fitmix reference)
-- **Font-size accessibility bug found, not yet fixed**: increasing the browser's base font size (independent of viewport width) breaks the navbar — nothing wraps, and `TrackedToMatch`'s computed letter-spacing (calculated for one line) stays applied after the tagline wraps to two lines, producing visibly broken spacing. Root cause: layout reacts to viewport-width breakpoints only, not actual available space. `whitespace-nowrap` applied as a partial mitigation (prevents the two-line corruption); the real fix is likely converting the navbar's collapse logic to CSS Container Queries (`@container`) so it responds to genuine rendered width regardless of *why* that width is tight (narrow phone screen or 200% text size — same problem, same fix)
-- Full copy read-through across all pages
-- Sanity check for leftover "Neon"/old-brand references (CSS utility names like `neon-glow`, image alt text, etc.)
+### 3. Mobile / responsive polish
 
-### 5. Deploy
+- **Font-size accessibility bug found, not yet fixed**: increasing the browser's base font size (independent of viewport width) breaks the navbar — nothing wraps, and `TrackedToMatch`'s computed letter-spacing (calculated for one line) stays applied after the tagline wraps to two lines, producing visibly broken spacing. Root cause: layout reacts to viewport-width breakpoints only, not actual available space. `whitespace-nowrap` applied as a partial mitigation (prevents the two-line corruption); the real fix is likely converting the navbar's collapse logic to CSS Container Queries (`@container`) so it responds to genuine rendered width regardless of _why_ that width is tight (narrow phone screen or 200% text size — same problem, same fix)
+- Full copy read-through across all pages
+
+### 4. Schedule page guardrails — MVP, up next
+
+Promoted from "future ideas" — required before deployment, not stretch goals.
+
+- **Disable `‹ Week` at the current week's boundary.** "Current week" = the rolling 7-day window whose start date equals today (local-date comparison, same convention used elsewhere). Disable rather than clamp — a disabled button is a clearer signal than a click that silently does nothing.
+- **Disable past-time-slot action buttons on today's view.** A class earlier today whose `start_time` has already passed shouldn't show a live "Join Class"/"Join Waitlist" button. Grey out and disable with a label like "Class ended" (matching the existing muted/disabled visual language used for "Class Full"), rather than hiding the row — hiding would make the day look like it has fewer classes than it actually does. Disabling `‹ Week` at the boundary above means this only needs to be solved for _today's_ window, not arbitrary past weeks, since visitors can no longer browse into fully past weeks at all.
+
+### 5. Meta tags — MVP, required before deployment
+
+- **`robots`** — explicit `robots.txt` and/or per-page meta robots directives
+- **`description`** — per-page meta descriptions (currently unset/default)
+- **Favicon/icons** — favicon plus any additional sizes (apple-touch-icon, etc.)
+- **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
+- **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page where it matters (Home at minimum; consider Schedule/Pricing too)
+
+### 6. Deploy
+
 - Vercel, custom subdomain via GoDaddy — same pattern as Countsy and Wurst & Ale
 - Update README's "Live link coming soon" once the real URL exists
 
 ## Future ideas (not scoped, just noted)
 
 - "Not you? Sign in" option in the join modal, for cases where the pre-filled name/session doesn't match who's actually booking
-- **Disable `‹ Week` at the current week's boundary.** "Current week" = the rolling 7-day window whose start date equals today (local-date comparison, same convention used elsewhere). Disable rather than clamp — a disabled button is a clearer signal than a click that silently does nothing.
-- **Disable past-time-slot action buttons on today's view.** A class earlier today whose `start_time` has already passed shouldn't show a live "Join Class"/"Join Waitlist" button. Grey out and disable with a label like "Class ended" (matching the existing muted/disabled visual language used for "Class Full"), rather than hiding the row — hiding would make the day look like it has fewer classes than it actually does. Disabling `‹ Week` at the boundary above means this only needs to be solved for *today's* window, not arbitrary past weeks, since visitors can no longer browse into fully past weeks at all.
