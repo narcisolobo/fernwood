@@ -38,6 +38,7 @@ function JoinButton({
           className={`btn btn-neutral btn-sm btn-soft whitespace-nowrap ${className}`}
           onClick={() => dialogRef.current?.showModal()}
           disabled={disabled}
+          aria-disabled={disabled}
           suppressHydrationWarning
         >
           {myStatus === "booked" ? "Cancel Booking" : "Leave Waitlist"}
@@ -61,6 +62,7 @@ function JoinButton({
         } ${className}`}
         onClick={() => dialogRef.current?.showModal()}
         disabled={disabled}
+        aria-disabled={disabled}
         suppressHydrationWarning
       >
         {status === "open" ? "Join Class" : "Join Waitlist"}
