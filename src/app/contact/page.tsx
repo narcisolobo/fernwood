@@ -11,7 +11,7 @@ const metadata: Metadata = {
 
 function ContactPage() {
   return (
-    <main>
+    <main className="flex-1">
       <VisitUs />
       <FAQ />
       <ReadyToMove />

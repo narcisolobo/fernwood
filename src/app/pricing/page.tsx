@@ -11,7 +11,7 @@ const metadata: Metadata = {
 
 function PricingPage() {
   return (
-    <main>
+    <main className="flex-1">
       <Pricing />
       <Memberships />
       <PickYourPace />

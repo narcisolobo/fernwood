@@ -12,7 +12,7 @@ const metadata: Metadata = {
 
 function AboutUsPage() {
   return (
-    <main>
+    <main className="flex-1">
       <OurStory />
       <HowWeGotHere />
       <InsideTheStudio />

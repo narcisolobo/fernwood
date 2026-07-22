@@ -34,7 +34,7 @@ async function SchedulePage({ searchParams }: SchedulePageProps) {
     rawType === "reformer" || rawType === "mat" ? rawType : undefined;
 
   return (
-    <main>
+    <main className="flex-1">
       <Schedule />
       <ClassScheduleTable dateStr={dateStr} type={type} />
     </main>

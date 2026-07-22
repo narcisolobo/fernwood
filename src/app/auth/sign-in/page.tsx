@@ -15,7 +15,7 @@ async function SignInPage({ searchParams }: SignInPageProps) {
   const { error } = await searchParams;
 
   return (
-    <main>
+    <main className="flex-1">
       <SignIn error={error} />
     </main>
   );

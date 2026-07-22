@@ -11,7 +11,7 @@ const metadata: Metadata = {
 
 function InstructorsPage() {
   return (
-    <main>
+    <main className="flex-1">
       <LeadInstructors />
       <Apprentices />
       <FindYourMatch />

@@ -1,6 +1,6 @@
 function Author() {
   return (
-    <div className="bg-base-100 text-base-content py-4 text-center">
+    <div className="bg-base-200 text-base-content py-4 text-center">
       <a
         href="https://narcisolobo.com"
         target="_blank"
