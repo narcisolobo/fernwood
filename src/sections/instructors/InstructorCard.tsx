@@ -3,7 +3,7 @@ import { type InstructorItem } from "./instructors-data";
 
 function InstructorCard({ photo, name, role, bio }: InstructorItem) {
   return (
-    <article className="card border-base-300 shadow">
+    <article className="card bg-base-200 border-base-300 shadow">
       <div className="card-body">
         <figure>
           <Image
