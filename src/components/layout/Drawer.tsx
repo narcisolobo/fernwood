@@ -22,7 +22,7 @@ function Drawer({ children }: DrawerProps) {
         type="checkbox"
         className="drawer-toggle"
       />
-      <div className="drawer-content flex flex-col">
+      <div className="drawer-content flex min-h-dvh flex-col">
         <Navbar />
         {children}
         <Footer />
