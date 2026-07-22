@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <nav className="bg-base-200 flex w-full items-center py-2 shadow">
       <div className="container mx-auto px-2 lg:px-0">
-        <div className="flex items-center gap-2">
+        <div className="@container flex items-center gap-2">
           <Hamburger />
           <div className="flex-1">
             <Link href="/">
@@ -32,7 +32,7 @@ function Navbar() {
               </div>
             </Link>
           </div>
-          <div className="hidden flex-none lg:block">
+          <div className="hidden flex-none @[80rem]:block">
             <DesktopNav />
           </div>
           <Link

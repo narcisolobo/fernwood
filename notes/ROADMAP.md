@@ -39,7 +39,9 @@
 
 ### 3. Mobile / responsive polish
 
-- **Font-size accessibility bug found, not yet fixed**: increasing the browser's base font size (independent of viewport width) breaks the navbar — nothing wraps, and `TrackedToMatch`'s computed letter-spacing (calculated for one line) stays applied after the tagline wraps to two lines, producing visibly broken spacing. Root cause: layout reacts to viewport-width breakpoints only, not actual available space. `whitespace-nowrap` applied as a partial mitigation (prevents the two-line corruption); the real fix is likely converting the navbar's collapse logic to CSS Container Queries (`@container`) so it responds to genuine rendered width regardless of _why_ that width is tight (narrow phone screen or 200% text size — same problem, same fix)
+- ~~Font-size accessibility bug: increasing the browser's base font size (independent of viewport width) broke the navbar~~ — fixed by converting the hamburger/desktop-nav collapse logic (`Navbar.tsx`, `Hamburger.tsx`) from viewport breakpoints (`lg:`) to a CSS Container Query (`@container` on the nav row, `@[80rem]:` on the hamburger and desktop-nav wrapper). Book a Class / Sign in intentionally keep their separate `md:` viewport breakpoint.
+  - Threshold is `@[80rem]` (1280px), not `@[64rem]` (1024px) — the custom `@utility container` in `globals.css` is stepped, not fluid (jumps `40rem → 48rem → 64rem → 80rem` at each breakpoint and holds flat in between, with no `2xl` step). Between a 1024px and 1279px viewport the nav row is frozen at exactly 1024px of available width, which isn't enough for nav links + Book a Class + divider + "Sign out" (~1067–1091px needed) — collapsing at `64rem` collided in that whole window. `80rem` is the next available step and clears it with margin.
+  - Verified with Playwright: viewport sweep 1000–1400px (both "Sign in" and "Sign out" label states) shows no overlap/wrap; 1280px viewport with root font-size doubled still correctly falls back to the hamburger.
 - Full copy read-through across all pages
 
 ### 4. Meta tags — MVP, required before deployment

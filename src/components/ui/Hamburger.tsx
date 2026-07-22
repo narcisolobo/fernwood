@@ -16,7 +16,7 @@ function Hamburger() {
       ref={triggerRef}
       onClick={toggleDrawer}
       aria-label="open sidebar"
-      className="btn btn-square btn-ghost drawer-button lg:hidden"
+      className="btn btn-square btn-ghost drawer-button @[80rem]:hidden"
     >
       <IconMenu2 className="inline-block h-6 w-6 stroke-current" />
     </button>
