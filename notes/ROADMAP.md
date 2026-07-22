@@ -17,7 +17,7 @@
 
 ### 3. Custom 404 page — required before deployment
 
-- [ ] Add `not-found.tsx` at the app root (Next.js App Router convention) to replace the framework default — on-brand styling (autumn/maroon palette, existing nav/footer), a friendly line consistent with the site's fictional-studio footer disclaimer, and a link back to Home.
+- [x] Add `not-found.tsx` at the app root (Next.js App Router convention) to replace the framework default — on-brand styling (autumn/maroon palette, existing nav/footer), a friendly line consistent with the site's fictional-studio footer disclaimer, and a link back to Home.
 
 ### 4. Error handling & loading states — required before deployment
 
