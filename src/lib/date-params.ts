@@ -10,4 +10,12 @@ function fromDateParam(dateStr: string): Date {
   return new Date(year, month - 1, day); // local midnight, not UTC
 }
 
-export { toDateParam, fromDateParam };
+function isSameLocalDate(a: Date, b: Date): boolean {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+export { toDateParam, fromDateParam, isSameLocalDate };

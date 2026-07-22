@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fromDateParam, toDateParam } from "./date-params";
+import { fromDateParam, isSameLocalDate, toDateParam } from "./date-params";
 
 describe("toDateParam", () => {
   it("formats a date as YYYY-MM-DD", () => {
@@ -25,5 +25,25 @@ describe("toDateParam + fromDateParam", () => {
   it("round-trips without shifting a day", () => {
     const dateStr = "2026-12-31";
     expect(toDateParam(fromDateParam(dateStr))).toBe(dateStr);
+  });
+});
+
+describe("isSameLocalDate", () => {
+  it("treats different times on the same day as the same date", () => {
+    const morning = new Date(2026, 6, 20, 6, 0);
+    const night = new Date(2026, 6, 20, 23, 30);
+    expect(isSameLocalDate(morning, night)).toBe(true);
+  });
+
+  it("treats adjacent days as different dates", () => {
+    const today = new Date(2026, 6, 20);
+    const tomorrow = new Date(2026, 6, 21);
+    expect(isSameLocalDate(today, tomorrow)).toBe(false);
+  });
+
+  it("handles month and year rollover", () => {
+    const newYearsEve = new Date(2026, 11, 31);
+    const newYearsDay = new Date(2027, 0, 1);
+    expect(isSameLocalDate(newYearsEve, newYearsDay)).toBe(false);
   });
 });

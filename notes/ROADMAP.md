@@ -23,6 +23,7 @@
 - **Name pre-fill**: `get_my_student_name` RPC deployed; `defaultName` threaded through `ClassScheduleTable` → `JoinButtonModal`, confirmed deployed and tested, not just written. Accepted behavior: editing the pre-filled name overwrites `students.name` going forward, same as `book_class`'s existing `on conflict` logic — intentional, not a bug
 - **Mobile schedule layout**: `ClassScheduleTable` renders two parallel views off the same fetched week data — the existing `<table>` (`WeekTableBody`/`ClassRow`) at `md:` and up, a new stacked-card list (`WeekCardList`/`ClassCard`) below it, following the Fitmix reference. `JoinButton` reused as-is in both, with an added optional `className` for full-width on mobile
 - **Old-brand reference sweep**: checked for leftover "Neon"/`neon-glow`-era references (CSS utility names, image alt text, etc.) across the codebase — clean
+- **`‹ Week` disabled at the current week's boundary**: `isSameLocalDate` helper added to `date-params.ts`; `ScheduleControls` disables the prev-week button (native `disabled` plus dynamic `aria-disabled`) once the URL's date window starts today, since visitors can no longer navigate into a fully past week
 
 ## Remaining
 
@@ -44,8 +45,7 @@
 
 Promoted from "future ideas" — required before deployment, not stretch goals.
 
-- **Disable `‹ Week` at the current week's boundary.** "Current week" = the rolling 7-day window whose start date equals today (local-date comparison, same convention used elsewhere). Disable rather than clamp — a disabled button is a clearer signal than a click that silently does nothing.
-- **Disable past-time-slot action buttons on today's view.** A class earlier today whose `start_time` has already passed shouldn't show a live "Join Class"/"Join Waitlist" button. Grey out and disable with a label like "Class ended" (matching the existing muted/disabled visual language used for "Class Full"), rather than hiding the row — hiding would make the day look like it has fewer classes than it actually does. Disabling `‹ Week` at the boundary above means this only needs to be solved for _today's_ window, not arbitrary past weeks, since visitors can no longer browse into fully past weeks at all.
+- **Disable past-time-slot action buttons on today's view.** A class earlier today whose `start_time` has already passed shouldn't show a live "Join Class"/"Join Waitlist" button. Grey out and disable with a label like "Class ended" (matching the existing muted/disabled visual language used for "Cancel Booking"), rather than hiding the row — hiding would make the day look like it has fewer classes than it actually does. Disabling `‹ Week` at the boundary above means this only needs to be solved for _today's_ window, not arbitrary past weeks, since visitors can no longer browse into fully past weeks at all.
 
 ### 5. Meta tags — MVP, required before deployment
 

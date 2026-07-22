@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IconCalendar } from "@tabler/icons-react";
-import { toDateParam, fromDateParam } from "@/lib/date-params";
+import { toDateParam, fromDateParam, isSameLocalDate } from "@/lib/date-params";
 
 function ScheduleControls() {
   const router = useRouter();
@@ -13,6 +13,7 @@ function ScheduleControls() {
   const currentDate = currentDateParam
     ? fromDateParam(currentDateParam)
     : new Date();
+  const isCurrentWeek = isSameLocalDate(currentDate, new Date());
 
   function goToDate(date: Date) {
     const params = new URLSearchParams(searchParams.toString());
@@ -51,6 +52,9 @@ function ScheduleControls() {
         <button
           className="btn btn-soft btn-sm join-item whitespace-nowrap"
           onClick={() => shiftWeek(-1)}
+          disabled={isCurrentWeek}
+          aria-disabled={isCurrentWeek}
+          suppressHydrationWarning
         >
           ‹ Week
         </button>

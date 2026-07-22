@@ -58,4 +58,19 @@ describe("ScheduleControls", () => {
     });
     expect(push).toHaveBeenCalledWith("?date=2026-08-01");
   });
+
+  it("disables ‹ Week when the URL date is today", () => {
+    setSearch(`date=${toDateParam(new Date())}`);
+    render(<ScheduleControls />);
+    const prevButton = screen.getByRole("button", { name: "‹ Week" });
+    expect(prevButton).toBeDisabled();
+    expect(prevButton).toHaveAttribute("aria-disabled", "true");
+  });
+
+  it("leaves ‹ Week enabled when the URL date isn't today", () => {
+    render(<ScheduleControls />);
+    const prevButton = screen.getByRole("button", { name: "‹ Week" });
+    expect(prevButton).not.toBeDisabled();
+    expect(prevButton).toHaveAttribute("aria-disabled", "false");
+  });
 });
