@@ -8,6 +8,7 @@ interface ScheduleClass {
   spotsOpen: number;
   waitlistCount: number;
   myStatus: "booked" | "waitlisted" | null;
+  hasEnded: boolean;
 }
 
 export { type ScheduleClass };

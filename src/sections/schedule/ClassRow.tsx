@@ -16,6 +16,7 @@ function ClassRow({
   spotsOpen,
   waitlistCount,
   myStatus,
+  hasEnded,
   date,
   defaultName,
 }: ClassRowProps) {
@@ -39,6 +40,7 @@ function ClassRow({
           teacher={teacher}
           status={status}
           myStatus={myStatus}
+          hasEnded={hasEnded}
           date={date}
           defaultName={defaultName}
         />

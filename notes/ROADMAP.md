@@ -24,6 +24,7 @@
 - **Mobile schedule layout**: `ClassScheduleTable` renders two parallel views off the same fetched week data — the existing `<table>` (`WeekTableBody`/`ClassRow`) at `md:` and up, a new stacked-card list (`WeekCardList`/`ClassCard`) below it, following the Fitmix reference. `JoinButton` reused as-is in both, with an added optional `className` for full-width on mobile
 - **Old-brand reference sweep**: checked for leftover "Neon"/`neon-glow`-era references (CSS utility names, image alt text, etc.) across the codebase — clean
 - **`‹ Week` disabled at the current week's boundary**: `isSameLocalDate` helper added to `date-params.ts`; `ScheduleControls` disables the prev-week button (native `disabled` plus dynamic `aria-disabled`) once the URL's date window starts today, since visitors can no longer navigate into a fully past week
+- **Past-time-slot action buttons disabled on today's view**: `hasClassEnded` helper added to `schedule-format.ts` (injectable `now` for testability, no timezone conversion — matches the rest of the app's local-time convention); computed server-side per class in `getSchedule` and threaded through `ClassRow`/`ClassCard` into `JoinButton`, which now shows a disabled "Class ended" state ahead of the existing open/full/booked/waitlisted branches — applies uniformly, so a booked or waitlisted class that's already happened also shows "Class ended" instead of "Cancel Booking"/"Leave Waitlist"
 
 ## Remaining
 
@@ -41,13 +42,7 @@
 - **Font-size accessibility bug found, not yet fixed**: increasing the browser's base font size (independent of viewport width) breaks the navbar — nothing wraps, and `TrackedToMatch`'s computed letter-spacing (calculated for one line) stays applied after the tagline wraps to two lines, producing visibly broken spacing. Root cause: layout reacts to viewport-width breakpoints only, not actual available space. `whitespace-nowrap` applied as a partial mitigation (prevents the two-line corruption); the real fix is likely converting the navbar's collapse logic to CSS Container Queries (`@container`) so it responds to genuine rendered width regardless of _why_ that width is tight (narrow phone screen or 200% text size — same problem, same fix)
 - Full copy read-through across all pages
 
-### 4. Schedule page guardrails — MVP, up next
-
-Promoted from "future ideas" — required before deployment, not stretch goals.
-
-- **Disable past-time-slot action buttons on today's view.** A class earlier today whose `start_time` has already passed shouldn't show a live "Join Class"/"Join Waitlist" button. Grey out and disable with a label like "Class ended" (matching the existing muted/disabled visual language used for "Cancel Booking"), rather than hiding the row — hiding would make the day look like it has fewer classes than it actually does. Disabling `‹ Week` at the boundary above means this only needs to be solved for _today's_ window, not arbitrary past weeks, since visitors can no longer browse into fully past weeks at all.
-
-### 5. Meta tags — MVP, required before deployment
+### 4. Meta tags — MVP, required before deployment
 
 - **`robots`** — explicit `robots.txt` and/or per-page meta robots directives
 - **`description`** — per-page meta descriptions (currently unset/default)
@@ -55,11 +50,11 @@ Promoted from "future ideas" — required before deployment, not stretch goals.
 - **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
 - **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page where it matters (Home at minimum; consider Schedule/Pricing too)
 
-### 6. Custom 404 page — MVP, required before deployment
+### 5. Custom 404 page — MVP, required before deployment
 
 - Add `not-found.tsx` at the app root (Next.js App Router convention) to replace the framework default — on-brand styling (autumn/maroon palette, existing nav/footer), a friendly line consistent with the site's fictional-studio footer disclaimer, and a link back to Home.
 
-### 7. Deploy
+### 6. Deploy
 
 - Vercel, custom subdomain via GoDaddy — same pattern as Countsy and Wurst & Ale
 - Update README's "Live link coming soon" once the real URL exists

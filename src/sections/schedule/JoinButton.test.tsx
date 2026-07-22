@@ -20,6 +20,7 @@ function renderJoinButton({
   status = "open" as "open" | "full",
   myStatus = null as "booked" | "waitlisted" | null,
   defaultName = null as string | null,
+  hasEnded = false,
 } = {}) {
   return render(
     <AuthContext.Provider value={{ session, loading }}>
@@ -31,6 +32,7 @@ function renderJoinButton({
         myStatus={myStatus}
         date={testDate}
         defaultName={defaultName}
+        hasEnded={hasEnded}
       />
     </AuthContext.Provider>,
   );
@@ -96,5 +98,34 @@ describe("JoinButton", () => {
         "Are you sure you want to cancel your booking for Power Reformer on Monday, July 20?",
       ),
     ).toBeInTheDocument();
+  });
+
+  it("shows 'Class ended' and disables the button once the class has ended", () => {
+    renderJoinButton({ session: fakeSession, status: "open", hasEnded: true });
+    expect(screen.getByRole("button", { name: "Class ended" })).toBeDisabled();
+  });
+
+  it("shows 'Class ended' instead of 'Cancel Booking' once a booked class has ended", () => {
+    renderJoinButton({
+      session: fakeSession,
+      myStatus: "booked",
+      hasEnded: true,
+    });
+    expect(screen.getByRole("button", { name: "Class ended" })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "Cancel Booking" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows 'Class ended' instead of 'Leave Waitlist' once a waitlisted class has ended", () => {
+    renderJoinButton({
+      session: fakeSession,
+      myStatus: "waitlisted",
+      hasEnded: true,
+    });
+    expect(screen.getByRole("button", { name: "Class ended" })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "Leave Waitlist" }),
+    ).not.toBeInTheDocument();
   });
 });

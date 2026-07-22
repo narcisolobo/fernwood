@@ -16,6 +16,7 @@ function ClassCard({
   spotsOpen,
   waitlistCount,
   myStatus,
+  hasEnded,
   date,
   defaultName,
 }: ClassCardProps) {
@@ -39,6 +40,7 @@ function ClassCard({
             teacher={teacher}
             status={status}
             myStatus={myStatus}
+            hasEnded={hasEnded}
             date={date}
             defaultName={defaultName}
             className="w-full"

@@ -4,6 +4,7 @@ import {
   formatDayLabel,
   formatDuration,
   formatTime,
+  hasClassEnded,
 } from "./schedule-format";
 
 describe("formatTime", () => {
@@ -56,5 +57,30 @@ describe("formatConfirmationDate", () => {
     expect(formatConfirmationDate(new Date(2026, 6, 20))).toBe(
       "Monday, July 20",
     );
+  });
+});
+
+describe("hasClassEnded", () => {
+  const day = new Date(2026, 6, 20); // Monday, July 20 2026
+
+  it("is false while the start time is still in the future", () => {
+    const now = new Date(2026, 6, 20, 8, 59, 0);
+    expect(hasClassEnded(day, "09:00:00", now)).toBe(false);
+  });
+
+  it("is true once the start time has passed", () => {
+    const now = new Date(2026, 6, 20, 9, 0, 1);
+    expect(hasClassEnded(day, "09:00:00", now)).toBe(true);
+  });
+
+  it("is false at the exact start time (not yet past)", () => {
+    const now = new Date(2026, 6, 20, 9, 0, 0);
+    expect(hasClassEnded(day, "09:00:00", now)).toBe(false);
+  });
+
+  it("is false for the same time on a future day", () => {
+    const now = new Date(2026, 6, 20, 9, 0, 1);
+    const nextWeek = new Date(2026, 6, 27);
+    expect(hasClassEnded(nextWeek, "09:00:00", now)).toBe(false);
   });
 });
