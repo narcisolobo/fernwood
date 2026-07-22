@@ -55,7 +55,11 @@ Promoted from "future ideas" — required before deployment, not stretch goals.
 - **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
 - **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page where it matters (Home at minimum; consider Schedule/Pricing too)
 
-### 6. Deploy
+### 6. Custom 404 page — MVP, required before deployment
+
+- Add `not-found.tsx` at the app root (Next.js App Router convention) to replace the framework default — on-brand styling (autumn/maroon palette, existing nav/footer), a friendly line consistent with the site's fictional-studio footer disclaimer, and a link back to Home.
+
+### 7. Deploy
 
 - Vercel, custom subdomain via GoDaddy — same pattern as Countsy and Wurst & Ale
 - Update README's "Live link coming soon" once the real URL exists
