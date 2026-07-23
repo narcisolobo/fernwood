@@ -7,6 +7,13 @@ const metadata: Metadata = {
   title: "Instructors",
   description:
     "Meet Fernwood's Reformer and mat Pilates instructors, led by founder Simone Vega, plus a team of apprentices training under her in West Hollywood.",
+  openGraph: {
+    title: "Instructors - Fernwood Pilates Studio",
+    type: "website",
+    url: "https://fernwood.narcisolobo.com/instructors",
+    description:
+      "Meet Fernwood's Reformer and mat Pilates instructors, led by founder Simone Vega, plus a team of apprentices training under her in West Hollywood.",
+  },
 };
 
 function InstructorsPage() {

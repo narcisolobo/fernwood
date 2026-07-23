@@ -5,6 +5,13 @@ const metadata: Metadata = {
   title: "Sign In",
   description:
     "Sign in to Fernwood Pilates Studio to book Reformer and mat classes, join a waitlist, or manage your bookings.",
+  openGraph: {
+    title: "Sign In - Fernwood Pilates Studio",
+    type: "website",
+    url: "https://fernwood.narcisolobo.com/auth/sign-in",
+    description:
+      "Sign in to Fernwood Pilates Studio to book Reformer and mat classes, join a waitlist, or manage your bookings.",
+  },
 };
 
 type SignInPageProps = {

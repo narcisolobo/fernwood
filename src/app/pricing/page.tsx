@@ -7,6 +7,13 @@ const metadata: Metadata = {
   title: "Pricing",
   description:
     "Drop-in classes, class packs, and memberships for Fernwood Pilates Studio in West Hollywood. No contracts, no hidden fees — pick what fits your schedule.",
+  openGraph: {
+    title: "Pricing - Fernwood Pilates Studio",
+    type: "website",
+    url: "https://fernwood.narcisolobo.com/pricing",
+    description:
+      "Drop-in classes, class packs, and memberships for Fernwood Pilates Studio in West Hollywood. No contracts, no hidden fees — pick what fits your schedule.",
+  },
 };
 
 function PricingPage() {

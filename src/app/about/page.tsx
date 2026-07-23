@@ -8,6 +8,13 @@ const metadata: Metadata = {
   title: "About Us",
   description:
     "How Fernwood Pilates Studio grew from one instructor teaching every class herself into a full studio team in West Hollywood — read our story.",
+  openGraph: {
+    title: "About Us - Fernwood Pilates Studio",
+    type: "website",
+    url: "https://fernwood.narcisolobo.com/about",
+    description:
+      "How Fernwood Pilates Studio grew from one instructor teaching every class herself into a full studio team in West Hollywood — read our story.",
+  },
 };
 
 function AboutUsPage() {

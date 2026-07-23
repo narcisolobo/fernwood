@@ -12,8 +12,8 @@
 - [x] **`robots`** — explicit `robots.txt` and/or per-page meta robots directives
 - [x] **`description`** — per-page meta descriptions (currently unset/default)
 - [x] **Favicon/icons** — favicon plus any additional sizes (apple-touch-icon, etc.)
-- [ ] **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
-- [ ] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page where it matters (Home at minimum; consider Schedule/Pricing too)
+- [x] **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
+- [ ] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page. Take screenshots in the morning.
 
 ### 3. Custom 404 page — required before deployment
 

@@ -17,6 +17,13 @@ async function generateMetadata({ searchParams }: Params): Promise<Metadata> {
     title: `Class Schedule — ${weekday}, ${dateLabel}`,
     description:
       "Browse a full week of Reformer and mat Pilates classes at Fernwood, with live availability and instant booking. Filter by class type, see what's open.",
+    openGraph: {
+      title: "Book a Class - Fernwood Pilates Studio",
+      type: "website",
+      url: "https://fernwood.narcisolobo.com/schedule",
+      description:
+        "Browse a full week of Reformer and mat Pilates classes at Fernwood, with live availability and instant booking. Filter by class type, see what's open.",
+    },
   };
 }
 
