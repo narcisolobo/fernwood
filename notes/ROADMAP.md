@@ -26,7 +26,7 @@
 
 ### 5. Supabase Auth redirect allowlist — required before deployment
 
-- [ ] Add the real production domain to Supabase Dashboard → Auth → URL Configuration once a Vercel URL exists. Magic-link redirects work on localhost today but will silently fail in production without this — easy to forget since nothing local will catch it.
+- [x] Add the real production domain to Supabase Dashboard → Auth → URL Configuration once a Vercel URL exists. Magic-link redirects work on localhost today but will silently fail in production without this — easy to forget since nothing local will catch it.
 
 ### 6. Build, lint, and debug-log cleanup — required before deployment
 
@@ -45,7 +45,7 @@
 
 ### 9. Deploy
 
-- [ ] Deploy to Vercel, custom subdomain via GoDaddy — same pattern as Countsy and Wurst & Ale
+- [x] Deploy to Vercel, custom subdomain via GoDaddy — same pattern as Countsy and Wurst & Ale
 - [x] Update README's "Live link coming soon" once the real URL exists
 
 ## Post-Deployment
