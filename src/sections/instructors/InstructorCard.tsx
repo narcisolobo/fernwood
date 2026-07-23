@@ -8,7 +8,7 @@ function InstructorCard({ photo, name, role, bio }: InstructorItem) {
         <figure>
           <Image
             src={photo}
-            alt={name}
+            alt={`Portrait of ${name}`}
             className="mb-4 rounded-lg"
             width={480}
             height={358}

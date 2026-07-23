@@ -52,8 +52,8 @@ function JoinButtonModal({
               }
             >
               {state.status === "booked"
-                ? "You're in!"
-                : "You're on the waitlist."}
+                ? "You&rsquo;re in!"
+                : "You&rsquo;re on the waitlist."}
             </p>
             <button onClick={closeModal} className="btn btn-sm mt-4">
               Close

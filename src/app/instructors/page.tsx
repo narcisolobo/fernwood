@@ -6,7 +6,7 @@ import { Metadata } from "next";
 const meta = {
   title: "Instructors - Fernwood Pilates Studio",
   description:
-    "Visit Fernwood Pilates Studio in West Hollywood, right off Santa Monica Blvd. Studio hours, directions, and answers to frequently asked questions.",
+    "Meet Fernwood's Reformer and mat Pilates instructors, led by founder Simone Vega, plus a team of apprentices training under her in West Hollywood.",
 };
 
 const metadata: Metadata = {

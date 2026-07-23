@@ -11,7 +11,7 @@ function Hero() {
             <div id="hero-image" className="shadow">
               <Image
                 src={Pilates}
-                alt="Woman doing pilates"
+                alt="A woman with dark hair in a low bun performs a controlled reformer exercise, seated upright with one leg extended, in a sunlit studio with brick walls and rows of reformers."
                 className="rounded-lg"
                 loading="eager"
               />
@@ -24,12 +24,12 @@ function Hero() {
                 Grow stronger from the ground up.
               </h1>
               <p className="text-lg lg:text-xl">
-                Reformer and mat classes built around precision, breath, and
+                Reformer and Mat classes built around precision, breath, and
                 room to move at your own pace.
               </p>
               <div className="flex flex-col items-center gap-6 lg:flex-row">
                 <Link href="/schedule" className="btn btn-lg btn-primary">
-                  Book a Drop-in Class
+                  Book a Drop-In Class
                 </Link>
                 <Link href="/schedule" className="link-primary">
                   View Schedule →

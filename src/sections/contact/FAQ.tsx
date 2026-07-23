@@ -15,9 +15,9 @@ const faqs: FAQItem[] = [
       "Cancel or reschedule up to 4 hours before class with no penalty. Late cancellations forfeit the class from your pack or membership.",
   },
   {
-    question: "Do I need experience to take a reformer class?",
+    question: "Do I need experience to take a Reformer class?",
     answer:
-      "No experience required. Instructors walk first-timers through the machine before class, and every session can be modified to your level.",
+      "No experience required. Instructors walk first-timers through the machine beforehand, and every class can be modified to your level.",
   },
   {
     question: "Is parking available?",

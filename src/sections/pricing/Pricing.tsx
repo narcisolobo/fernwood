@@ -15,9 +15,9 @@ const plans: PricingPlan[] = [
     price: "$38",
     priceNote: "per class",
     features: [
+      "*First class free for first-timers",
       "Single reformer or mat class",
       "No commitment",
-      "Great for first-timers",
     ],
     cta: "Book a Class",
   },

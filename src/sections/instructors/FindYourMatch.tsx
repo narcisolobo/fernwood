@@ -9,7 +9,7 @@ function FindYourMatch() {
       <div className="container mx-auto px-2 md:px-0">
         <div className="flex flex-col items-center justify-center gap-6">
           <h2 className="font-display text-3xl font-semibold lg:text-5xl">
-            Find Your Match.
+            Find your match.
           </h2>
           <p className="max-w-[45ch] text-center text-lg lg:text-xl">
             Every instructor brings something different — browse the schedule to

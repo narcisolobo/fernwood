@@ -9,8 +9,8 @@ function NotFound() {
           This page took a rest day.
         </h1>
         <p className="mb-4">
-          The page you&apos;re looking for doesn&apos;t exist — maybe it moved,
-          or the link was mistyped.
+          The page you&rsquo;re looking for doesn&rsquo;t exist — maybe it
+          moved, or the link was mistyped.
         </p>
         <Link href="/" className="btn btn-primary">
           <IconArrowBackUp className="mr-2" />

@@ -18,7 +18,7 @@ function ErrorPage({ error, reset }: ErrorPageProps) {
     <main className="bg-neutral text-neutral-content flex flex-1 items-center justify-center py-20">
       <section className="text-center">
         <h1 className="font-display mb-6 text-center text-2xl font-semibold lg:text-4xl">
-          Something didn&apos;t stretch quite right.
+          Something didn&rsquo;t stretch quite right.
         </h1>
         <p className="mb-4">
           Something went wrong on our end — you can try again, or head back to

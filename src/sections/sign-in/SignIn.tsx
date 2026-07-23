@@ -15,7 +15,7 @@ function SignIn({ error }: SignInProps) {
         {error === "auth-failed" && (
           <div role="alert" className="alert alert-error mx-auto mb-4 max-w-80">
             <span>
-              We couldn&apos;t verify your magic link. Please try signing in
+              We couldn&rsquo;t verify your magic link. Please try signing in
               again.
             </span>
           </div>

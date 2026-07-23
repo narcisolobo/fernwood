@@ -52,7 +52,7 @@ function CancelBookingModal({
             <p className="text-secondary font-semibold">
               {myStatus === "booked"
                 ? "Your booking has been canceled."
-                : "You've left the waitlist."}
+                : "You&rsquo;ve left the waitlist."}
             </p>
             <button onClick={closeModal} className="btn btn-sm mt-4">
               Close

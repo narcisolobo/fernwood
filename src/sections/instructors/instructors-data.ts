@@ -14,7 +14,7 @@ const instructors: InstructorItem[] = [
   {
     name: "Simone Vega",
     role: "Power Reformer",
-    bio: "Simone builds strength from the ground up — controlled, deliberate sessions that leave you steadier than when you walked in.",
+    bio: "Simone builds strength from the ground up — controlled, deliberate classes that leave you steadier than when you walked in.",
     photo: Simone,
   },
   {
