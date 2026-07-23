@@ -1,7 +1,7 @@
 import {
   IconTarget as Target,
   IconLungs as Wind,
-  IconBolt as Bolt,
+  IconWaveSine as Wave,
   IconUsersGroup as Users,
 } from "@tabler/icons-react";
 import type { IconProps } from "@tabler/icons-react";
@@ -39,9 +39,10 @@ const philosophy: PhilosophyItem[] = [
     color: "info",
   },
   {
-    icon: Bolt,
-    title: "Energy",
-    description: "Curated playlists that keep the room moving.",
+    icon: Wave,
+    title: "Flow",
+    description:
+      "Seamless transitions designed to keep you present and connected.",
     color: "warning",
   },
   {
@@ -63,8 +64,8 @@ function Philosophy() {
           Train with intention.
         </h2>
         <p className="text-center lg:text-lg">
-          Every class is built on four principles behind every rep, every cue,
-          every playlist.
+          Every class is built on four core principles guiding every movement,
+          every breath, and every stretch.
         </p>
         <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
           {philosophy.map((item) => (
