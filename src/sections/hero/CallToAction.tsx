@@ -12,8 +12,10 @@ function CallToAction() {
             Your first class is on us.
           </h2>
           <p className="max-w-[45ch] text-center text-lg lg:text-xl">
-            New to Fernwood? Grab a complimentary drop-in and see what the
-            hype&apos;s about.
+            New to Fernwood?
+            <br />
+            Enjoy a <span className="font-semibold">complimentary</span> drop-in
+            class and find your flow.
           </p>
           <Link href="/schedule" className="btn btn-primary btn-lg">
             Claim Your First Class
