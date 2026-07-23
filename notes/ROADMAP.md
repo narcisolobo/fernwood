@@ -4,7 +4,7 @@
 
 ### 1. Mobile / responsive polish
 
-- [ ] Full copy read-through across all pages
+- [x] Full copy read-through across all pages
 - [ ] Touch-target size check on the Schedule page specifically — several `btn-sm` action buttons per row; verify against WCAG's ~44px target-size guidance now that both the table and mobile card layouts are in place
 
 ### 2. Meta tags — required before deployment
@@ -13,7 +13,7 @@
 - [x] **`description`** — per-page meta descriptions (currently unset/default)
 - [x] **Favicon/icons** — favicon plus any additional sizes (apple-touch-icon, etc.)
 - [x] **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
-- [ ] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page. Take screenshots in the morning. Add an accompanying `opengraph-image.alt.txt`/`twitter-image.alt.txt` file in the same route segment.
+- [x] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page. Take screenshots in the morning. Add an accompanying `opengraph-image.alt.txt`/`twitter-image.alt.txt` file in the same route segment.
 
 ### 3. Custom 404 page — required before deployment
 

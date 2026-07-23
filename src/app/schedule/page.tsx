@@ -19,15 +19,21 @@ async function generateMetadata({ searchParams }: Params): Promise<Metadata> {
   const { date } = await searchParams;
   const parsed = date ? fromDateParam(date) : new Date();
   const [weekday, dateLabel] = formatDayLabel(parsed).split("|");
+  const title = `Class Schedule — ${weekday}, ${dateLabel}`;
 
   return {
-    title: `Class Schedule — ${weekday}, ${dateLabel}`,
+    title: title,
     description: meta.description,
     openGraph: {
-      title: `Class Schedule — ${weekday}, ${dateLabel}`,
+      title: title,
       description: meta.description,
       url: "https://fernwood.narcisolobo.com/schedule",
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: meta.description,
     },
   };
 }

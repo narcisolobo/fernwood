@@ -18,6 +18,11 @@ const metadata: Metadata = {
     url: "https://fernwood.narcisolobo.com/instructors",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: meta.title,
+    description: meta.description,
+  },
 };
 
 function InstructorsPage() {
