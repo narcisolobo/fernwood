@@ -2,7 +2,7 @@
 
 ## Leftover rebrand residue from name change from "Neon Core" to "Fernwood"
 
-- [ ] No stray "Neon Core" text anywhere (page content, meta tags, comments)
+- [x] No stray "Neon Core" text anywhere (page content, meta tags, comments)
 - [ ] No leftover nightlife/high-energy tone words ("energy," "intensity," etc.) outside intentional context
 - [ ] Image alt text matches current brand, not the old one
 - [ ] Meta descriptions / error pages written post-rename match Fernwood's calm, plain-spoken register

@@ -48,7 +48,7 @@ function VisitUs() {
                 Contact
               </h2>
               <p className="mt-2 font-semibold">(323) 555-1987</p>
-              <p className="font-semibold">hello@neoncorepilates.com</p>
+              <p className="font-semibold">hello@fernwoodpilates.com</p>
             </div>
           </div>
         </div>
