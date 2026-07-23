@@ -4,6 +4,11 @@ import { type Metadata } from "next";
 import { fromDateParam } from "@/lib/date-params";
 import { formatDayLabel } from "@/lib/schedule-format";
 
+const meta = {
+  description:
+    "Browse a full week of Reformer and mat Pilates classes at Fernwood, with live availability and instant booking. Filter by class type, see what's open.",
+};
+
 interface Params {
   searchParams: Promise<{ date?: string }>;
 }
@@ -15,14 +20,12 @@ async function generateMetadata({ searchParams }: Params): Promise<Metadata> {
 
   return {
     title: `Class Schedule — ${weekday}, ${dateLabel}`,
-    description:
-      "Browse a full week of Reformer and mat Pilates classes at Fernwood, with live availability and instant booking. Filter by class type, see what's open.",
+    description: meta.description,
     openGraph: {
-      title: "Book a Class - Fernwood Pilates Studio",
-      type: "website",
+      title: `Class Schedule — ${weekday}, ${dateLabel}`,
+      description: meta.description,
       url: "https://fernwood.narcisolobo.com/schedule",
-      description:
-        "Browse a full week of Reformer and mat Pilates classes at Fernwood, with live availability and instant booking. Filter by class type, see what's open.",
+      type: "website",
     },
   };
 }

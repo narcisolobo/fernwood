@@ -4,15 +4,20 @@ import Instructors from "@/sections/instructors/Instructors";
 import Philosophy from "@/sections/philosophy/Philosophy";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
+const meta = {
+  title: "Fernwood Pilates Studio - Demo",
   description:
     "Reformer and mat Pilates in West Hollywood. Grow stronger from the ground up with classes built around precision, breath, and room to move at your own pace.",
+};
+
+const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
   openGraph: {
-    title: "Fernwood Pilates Studio - Demo",
-    type: "website",
+    title: meta.title,
+    description: meta.description,
     url: "https://fernwood.narcisolobo.com",
-    description:
-      "Reformer and mat Pilates in West Hollywood. Grow stronger from the ground up with classes built around precision, breath, and room to move at your own pace.",
+    type: "website",
   },
 };
 

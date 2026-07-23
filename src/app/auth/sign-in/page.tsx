@@ -1,16 +1,20 @@
 import SignIn from "@/sections/sign-in/SignIn";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
-  title: "Sign In",
+const meta = {
+  title: "Sign In - Fernwood Pilates Studio",
   description:
     "Sign in to Fernwood Pilates Studio to book Reformer and mat classes, join a waitlist, or manage your bookings.",
+};
+
+const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
   openGraph: {
-    title: "Sign In - Fernwood Pilates Studio",
-    type: "website",
+    title: meta.title,
+    description: meta.description,
     url: "https://fernwood.narcisolobo.com/auth/sign-in",
-    description:
-      "Sign in to Fernwood Pilates Studio to book Reformer and mat classes, join a waitlist, or manage your bookings.",
+    type: "website",
   },
 };
 

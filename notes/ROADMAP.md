@@ -13,7 +13,7 @@
 - [x] **`description`** — per-page meta descriptions (currently unset/default)
 - [x] **Favicon/icons** — favicon plus any additional sizes (apple-touch-icon, etc.)
 - [x] **Manifest** — `manifest.json`/`site.webmanifest` for PWA-adjacent metadata
-- [ ] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page. Take screenshots in the morning.
+- [ ] **Open Graph / Twitter** — `og:title`, `og:description`, `og:image`, Twitter card tags, per page. Take screenshots in the morning. Add an accompanying `opengraph-image.alt.txt`/`twitter-image.alt.txt` file in the same route segment.
 
 ### 3. Custom 404 page — required before deployment
 

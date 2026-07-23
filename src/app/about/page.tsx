@@ -4,16 +4,20 @@ import InsideTheStudio from "@/sections/our-story/InsideTheStudio";
 import OurStory from "@/sections/our-story/OurStory";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
-  title: "About Us",
+const meta = {
+  title: "About Us - Fernwood Pilates Studio",
   description:
     "How Fernwood Pilates Studio grew from one instructor teaching every class herself into a full studio team in West Hollywood — read our story.",
+};
+
+const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
   openGraph: {
-    title: "About Us - Fernwood Pilates Studio",
-    type: "website",
+    title: meta.title,
+    description: meta.description,
     url: "https://fernwood.narcisolobo.com/about",
-    description:
-      "How Fernwood Pilates Studio grew from one instructor teaching every class herself into a full studio team in West Hollywood — read our story.",
+    type: "website",
   },
 };
 

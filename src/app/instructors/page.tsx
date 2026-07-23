@@ -3,16 +3,20 @@ import FindYourMatch from "@/sections/instructors/FindYourMatch";
 import LeadInstructors from "@/sections/instructors/LeadInstructors";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
-  title: "Instructors",
+const meta = {
+  title: "Instructors - Fernwood Pilates Studio",
   description:
-    "Meet Fernwood's Reformer and mat Pilates instructors, led by founder Simone Vega, plus a team of apprentices training under her in West Hollywood.",
+    "Visit Fernwood Pilates Studio in West Hollywood, right off Santa Monica Blvd. Studio hours, directions, and answers to frequently asked questions.",
+};
+
+const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
   openGraph: {
-    title: "Instructors - Fernwood Pilates Studio",
-    type: "website",
+    title: meta.title,
+    description: meta.description,
     url: "https://fernwood.narcisolobo.com/instructors",
-    description:
-      "Meet Fernwood's Reformer and mat Pilates instructors, led by founder Simone Vega, plus a team of apprentices training under her in West Hollywood.",
+    type: "website",
   },
 };
 
