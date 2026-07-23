@@ -20,6 +20,8 @@ function Navbar() {
                     src={Fern}
                     alt="Fernwood Fern Logo"
                     loading="eager"
+                    width={48}
+                    height={48}
                     className="h-auto w-8 md:w-10"
                   />
                 </div>

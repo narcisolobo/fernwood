@@ -5,7 +5,7 @@ function Author() {
         href="https://narcisolobo.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="link text-base-content/60 text-sm"
+        className="link text-base-content/90 text-sm"
       >
         A portfolio project by Narciso Lobo
       </a>

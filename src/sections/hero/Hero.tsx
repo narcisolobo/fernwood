@@ -17,7 +17,7 @@ function Hero() {
               />
             </div>
             <div id="hero-copy" className="flex flex-col items-start gap-6">
-              <div className="bg-base-200 border-base-300 text-base-content/60 w-fit rounded-lg border px-2 py-1 text-xs">
+              <div className="bg-base-200 border-base-300 text-base-content/80 w-fit rounded-lg border px-2 py-1 text-xs">
                 West Hollywood · Reformer & Mat Pilates
               </div>
               <h1 className="font-display text-4xl lg:text-6xl">

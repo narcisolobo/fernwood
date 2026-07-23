@@ -30,7 +30,15 @@ async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
 
           {/* Desktop: table, columns, shared header row */}
           <div className="hidden overflow-x-auto md:block">
-            <table className="table">
+            <table className="table table-fixed">
+              <colgroup>
+                <col className="w-[12%]" />
+                <col className="w-[24%]" />
+                <col className="w-[16%]" />
+                <col className="w-[10%]" />
+                <col className="w-[18%]" />
+                <col className="w-[20%]" />
+              </colgroup>
               <thead>
                 <tr>
                   <th>Start Time</th>

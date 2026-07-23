@@ -4,10 +4,10 @@ function PickYourPace() {
   return (
     <section
       id="pick-your-pace"
-      className="bg-neutral flex items-center justify-center py-20"
+      className="bg-accent flex items-center justify-center py-20"
     >
       <div className="container mx-auto px-2 md:px-0">
-        <div className="text-neutral-content flex flex-col items-center justify-center gap-6">
+        <div className="text-accent-content flex flex-col items-center justify-center gap-6">
           <h2 className="font-display text-center text-3xl font-semibold lg:text-5xl">
             Not sure which plan fits?
           </h2>

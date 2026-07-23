@@ -12,18 +12,18 @@ function MembershipCard({
     <div
       className={`rounded-box flex flex-col p-6 shadow ${
         highlighted
-          ? "bg-neutral text-neutral-content"
+          ? "border-primary bg-base-100 border"
           : "border-base-300 bg-base-100 border"
       }`}
     >
-      <h3 className="font-semibold">{name}</h3>
+      <h2 className="font-semibold">{name}</h2>
       <p className="mt-2 text-3xl font-bold">
         {price}
         <span className="text-base font-normal">/mo</span>
       </p>
       <p
         className={`mt-1 text-sm ${
-          highlighted ? "text-neutral-content/70" : "text-base-content/60"
+          highlighted ? "text-primary/90" : "text-base-content/90"
         }`}
       >
         {priceNote}

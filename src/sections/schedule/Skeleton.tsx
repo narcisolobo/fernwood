@@ -12,7 +12,15 @@ function Skeleton() {
 
           {/* Desktop: table, columns, shared header row */}
           <div className="hidden overflow-x-auto md:block">
-            <table className="table">
+            <table className="table table-fixed">
+              <colgroup>
+                <col className="w-[12%]" />
+                <col className="w-[24%]" />
+                <col className="w-[16%]" />
+                <col className="w-[10%]" />
+                <col className="w-[18%]" />
+                <col className="w-[20%]" />
+              </colgroup>
               <thead>
                 <tr>
                   <th>Start Time</th>
@@ -37,16 +45,16 @@ function Skeleton() {
                     <div className="skeleton h-4 w-32"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-4 w-22"></div>
+                    <div className="skeleton h-4 w-20"></div>
                   </td>
                   <td>
                     <div className="skeleton h-4 w-16"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-4 w-18"></div>
+                    <div className="skeleton h-4 w-20"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-8 w-25"></div>
+                    <div className="skeleton h-8 w-24"></div>
                   </td>
                 </tr>
                 <tr>
@@ -57,16 +65,16 @@ function Skeleton() {
                     <div className="skeleton h-4 w-32"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-4 w-22"></div>
+                    <div className="skeleton h-4 w-20"></div>
                   </td>
                   <td>
                     <div className="skeleton h-4 w-16"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-4 w-18"></div>
+                    <div className="skeleton h-4 w-20"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-8 w-25"></div>
+                    <div className="skeleton h-8 w-24"></div>
                   </td>
                 </tr>
                 <tr>
@@ -77,16 +85,16 @@ function Skeleton() {
                     <div className="skeleton h-4 w-32"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-4 w-22"></div>
+                    <div className="skeleton h-4 w-20"></div>
                   </td>
                   <td>
                     <div className="skeleton h-4 w-16"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-4 w-18"></div>
+                    <div className="skeleton h-4 w-20"></div>
                   </td>
                   <td>
-                    <div className="skeleton h-8 w-25"></div>
+                    <div className="skeleton h-8 w-24"></div>
                   </td>
                 </tr>
               </tbody>

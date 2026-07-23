@@ -18,6 +18,7 @@ function TrackedToMatch({
   const referenceRef = useRef<HTMLSpanElement>(null);
   const measureRef = useRef<HTMLSpanElement>(null);
   const [letterSpacing, setLetterSpacing] = useState(0);
+  const [ready, setReady] = useState(false);
 
   useLayoutEffect(() => {
     function recalculate() {
@@ -34,6 +35,7 @@ function TrackedToMatch({
 
       const extraPerGap = (referenceWidth - naturalTargetWidth) / gaps;
       setLetterSpacing(extraPerGap);
+      setReady(true);
     }
 
     recalculate();
@@ -51,7 +53,7 @@ function TrackedToMatch({
       </span>
       <span
         className={targetClassName}
-        style={{ letterSpacing: `${letterSpacing}px` }}
+        style={{ letterSpacing: `${letterSpacing}px`, opacity: ready ? 1 : 0 }}
       >
         {target}
       </span>

@@ -21,7 +21,7 @@ function VisitUs() {
           </div>
           <div className="flex flex-col gap-8">
             <div>
-              <h2 className="text-accent text-xs font-semibold tracking-wide uppercase">
+              <h2 className="text-primary text-xs font-semibold tracking-wide uppercase">
                 Address
               </h2>
               <p className="mt-2 font-semibold">8332 Santa Monica Blvd</p>
@@ -31,7 +31,7 @@ function VisitUs() {
               </p>
             </div>
             <div>
-              <h2 className="text-accent text-xs font-semibold tracking-wide uppercase">
+              <h2 className="text-primary text-xs font-semibold tracking-wide uppercase">
                 Studio Hours
               </h2>
               <div className="mt-2 flex max-w-xs justify-between">
@@ -44,7 +44,7 @@ function VisitUs() {
               </div>
             </div>
             <div>
-              <h2 className="text-accent text-xs font-semibold tracking-wide uppercase">
+              <h2 className="text-primary text-xs font-semibold tracking-wide uppercase">
                 Contact
               </h2>
               <p className="mt-2 font-semibold">(323) 555-1987</p>

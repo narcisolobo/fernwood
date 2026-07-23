@@ -36,7 +36,9 @@ function Footer() {
             </p>
           </aside>
           <nav>
-            <h3 className="footer-title">Site Map</h3>
+            <h3 className="text-base-content/70 mb-2 font-semibold uppercase">
+              Site Map
+            </h3>
             <Link href="/" className="link link-hover">
               Home
             </Link>
@@ -58,7 +60,9 @@ function Footer() {
           </nav>
           <div className="flex flex-col gap-6">
             <nav>
-              <h3 className="footer-title">Social</h3>
+              <h3 className="text-base-content/70 mb-2 font-semibold uppercase">
+                Social
+              </h3>
               <div className="grid grid-flow-col gap-4">
                 <IconBrandTwitterFilled />
                 <IconBrandYoutubeFilled />
@@ -66,7 +70,9 @@ function Footer() {
               </div>
             </nav>
             <nav>
-              <h3 className="footer-title">Cookies</h3>
+              <h3 className="text-base-content/70 mb-2 font-semibold uppercase">
+                Cookies
+              </h3>
               <p className="text-base-content/70 max-w-[40ch] text-xs">
                 Fernwood uses cookies only to keep you signed in and your
                 booking session active. No analytics or tracking cookies are

@@ -3,7 +3,7 @@ import { type InstructorItem } from "./instructors-data";
 
 function InstructorCard({ photo, name, role, bio }: InstructorItem) {
   return (
-    <article className="card bg-base-200 border-base-300 shadow">
+    <article className="card bg-base-100 border-base-300 shadow">
       <div className="card-body">
         <figure>
           <Image
@@ -15,8 +15,8 @@ function InstructorCard({ photo, name, role, bio }: InstructorItem) {
           />
         </figure>
         <div>
-          <h3 className="text-lg font-semibold">{name}</h3>
-          <h4 className="text-accent mb-4 text-xs">{role}</h4>
+          <h2 className="text-lg font-semibold">{name}</h2>
+          <h3 className="text-base-content/60 mb-2 text-sm">{role}</h3>
           <p>{bio}</p>
         </div>
       </div>

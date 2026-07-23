@@ -24,11 +24,11 @@ function ClassCard({
     <div className="card border-base-300 card-sm border shadow">
       <div className="card-body">
         <div>
-          <p className="text-base-content/60 text-xs whitespace-nowrap">
+          <p className="text-base-content/80 text-xs whitespace-nowrap">
             {time} · {duration}
           </p>
           <h3 className="text-lg font-semibold">{name}</h3>
-          <p className="text-base-content/60 text-base">{teacher}</p>
+          <p className="text-base-content/80 text-base">{teacher}</p>
           <p className="mb-3 text-xs">
             {status === "open"
               ? `${spotsOpen} spots open`

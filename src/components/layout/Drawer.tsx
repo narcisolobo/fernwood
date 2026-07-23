@@ -21,6 +21,8 @@ function Drawer({ children }: DrawerProps) {
         id="mobile-navigation"
         type="checkbox"
         className="drawer-toggle"
+        aria-hidden="true"
+        tabIndex={-1}
       />
       <div className="drawer-content flex min-h-dvh flex-col">
         <Navbar />

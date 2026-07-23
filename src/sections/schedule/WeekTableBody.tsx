@@ -12,7 +12,7 @@ function WeekTableBody({ day, defaultName }: WeekTableBodyProps) {
       <tr className="bg-base-200">
         <td colSpan={6}>
           <span className="font-display font-semibold">{day.weekday}</span>{" "}
-          <span className="text-base-content/60">{day.dateLabel}</span>
+          <span className="text-base-content/90">{day.dateLabel}</span>
         </td>
       </tr>
       {day.classes.length === 0 ? (

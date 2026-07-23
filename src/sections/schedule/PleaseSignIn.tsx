@@ -10,9 +10,9 @@ function PleaseSignIn() {
   if (loading || session) return null;
 
   return (
-    <div role="alert" className="alert alert-info alert-soft border-info mt-4">
+    <div role="alert" className="alert alert-info border-info mt-4">
       <IconAlertSquareRounded />
-      <span>
+      <span className="font-semibold">
         Please{" "}
         <Link href="/auth/sign-in" className="link">
           sign in

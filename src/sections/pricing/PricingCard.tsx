@@ -19,13 +19,13 @@ function PricingCard({
           Most Popular
         </span>
       )}
-      <h3
+      <h2
         className={`text-xs font-semibold tracking-wide uppercase ${
-          highlighted ? "text-primary" : "text-accent"
+          highlighted ? "text-primary" : ""
         }`}
       >
         {name}
-      </h3>
+      </h2>
       <p className="mt-2 text-3xl font-bold">{price}</p>
       <p className="text-base-content/60 mt-1 text-sm">{priceNote}</p>
       <ul className="mt-6 flex flex-1 flex-col gap-2 text-sm">

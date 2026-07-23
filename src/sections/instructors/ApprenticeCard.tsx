@@ -11,11 +11,8 @@ function ApprenticeCard({ photo, name, role, bio }: ApprenticeItem) {
         width={480}
         height={358}
       />
-      <span className="bg-neutral/15 text-neutral mb-3 inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase">
-        Apprentice
-      </span>
-      <h3 className="text-lg font-semibold">{name}</h3>
-      <h4 className="text-accent mb-4 text-xs">{role}</h4>
+      <h2 className="text-lg font-semibold">{name}</h2>
+      <h3 className="text-primary mb-4 text-sm">{role}</h3>
       <p>{bio}</p>
     </article>
   );

@@ -12,10 +12,10 @@ function WeekCardList({ day, defaultName, isLast }: WeekCardListProps) {
     <div>
       <div className="badge badge-soft badge-neutral border-base-200 mb-3 w-full border text-left">
         <span className="font-display font-semibold">{day.weekday}</span>{" "}
-        <span className="text-base-content/60">{day.dateLabel}</span>
+        <span className="text-base-content/80">{day.dateLabel}</span>
       </div>
       {day.classes.length === 0 ? (
-        <p className="text-base-content/60 py-4 text-center text-sm">
+        <p className="text-base-content/80 py-4 text-center text-sm">
           No classes scheduled this day.
         </p>
       ) : (

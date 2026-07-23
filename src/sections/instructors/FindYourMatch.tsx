@@ -4,7 +4,7 @@ function FindYourMatch() {
   return (
     <section
       id="find-your-match"
-      className="bg-neutral text-neutral-content flex items-center justify-center py-20"
+      className="bg-accent text-accent-content flex items-center justify-center py-20"
     >
       <div className="container mx-auto px-2 md:px-0">
         <div className="flex flex-col items-center justify-center gap-6">
