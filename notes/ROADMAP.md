@@ -22,8 +22,7 @@
 ### 4. Error handling & loading states — required before deployment
 
 - [x] **`error.tsx`** at the app root — an on-brand error boundary for uncaught failures, matching `not-found.tsx`'s styling. Genuinely higher-stakes than it sounds: `book_class`/`cancel_booking` are live mutations against a real Supabase project that's already had one real outage during this build. Without this, any unhandled failure falls through to Next.js's default generic error screen.
-- [ ] **`loading.tsx` for the Schedule route** — `ClassScheduleTable` is `force-dynamic` with real async Supabase calls and currently has no fallback shown while that resolves; matters more in production (real network latency) than it did on localhost.
-- [ ] `global-error.tsx` (root-layout-level crashes) — deferred to Post-Deployment, rarer edge case, lower priority than the two above.
+- [x] **`loading.tsx` for the Schedule route** — `ClassScheduleTable` is `force-dynamic` with real async Supabase calls and currently has no fallback shown while that resolves; matters more in production (real network latency) than it did on localhost. Switched to `Suspense` instead for more granular control.
 
 ### 5. Supabase Auth redirect allowlist — required before deployment
 
@@ -66,7 +65,7 @@
 
 ### 4. Replace `window.alert()`/inline text feedback with real toast notifications
 
-- [ ] Current pattern (browser `alert()` for errors, inline text for success) works but isn't polished — genuine UX improvement, not a launch blocker
+- [x] Current pattern (browser `alert()` for errors, inline text for success) works but isn't polished — genuine UX improvement, not a launch blocker. Switched to modals instead of `window.alert()` and dynamic button text for success.
 
 ### 5. Verify asset/font optimization
 

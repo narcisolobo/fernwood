@@ -1,8 +1,10 @@
-import ClassScheduleTable from "@/sections/schedule/ClassScheduleTable";
-import Schedule from "@/sections/schedule/Schedule";
-import { type Metadata } from "next";
 import { fromDateParam } from "@/lib/date-params";
 import { formatDayLabel } from "@/lib/schedule-format";
+import ClassScheduleTable from "@/sections/schedule/ClassScheduleTable";
+import Schedule from "@/sections/schedule/Schedule";
+import Skeleton from "@/sections/schedule/Skeleton";
+import { type Metadata } from "next";
+import { Suspense } from "react";
 
 const meta = {
   description:
@@ -46,7 +48,9 @@ async function SchedulePage({ searchParams }: SchedulePageProps) {
   return (
     <main className="flex-1">
       <Schedule />
-      <ClassScheduleTable dateStr={dateStr} type={type} />
+      <Suspense key={`${dateStr}-${type}`} fallback={<Skeleton />}>
+        <ClassScheduleTable dateStr={dateStr} type={type} />
+      </Suspense>
     </main>
   );
 }

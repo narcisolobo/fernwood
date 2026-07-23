@@ -6,7 +6,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { AuthContext } from "./auth-context";
 
 function AuthProvider({ children }: { children: ReactNode }) {
-  const supabase = supabaseBrowserClient();
+  const [supabase] = useState(() => supabaseBrowserClient());
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     );
 
     return () => listener.subscription.unsubscribe();
-  }, [supabase.auth]);
+  }, [supabase]);
 
   return (
     <AuthContext.Provider value={{ session, loading }}>
