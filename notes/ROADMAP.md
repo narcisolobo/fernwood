@@ -5,7 +5,7 @@
 ### 1. Mobile / responsive polish
 
 - [x] Full copy read-through across all pages
-- [ ] Touch-target size check on the Schedule page specifically — several `btn-sm` action buttons per row; verify against WCAG's ~44px target-size guidance now that both the table and mobile card layouts are in place
+- [x] Touch-target size check on the Schedule page specifically — several `btn-sm` action buttons per row; verify against WCAG's ~44px target-size guidance now that both the table and mobile card layouts are in place
 
 ### 2. Meta tags — required before deployment
 
@@ -30,23 +30,23 @@
 
 ### 6. Build, lint, and debug-log cleanup — required before deployment
 
-- [ ] Run a full production build (`next build` or equivalent) locally to catch build-time TypeScript errors before deploying
-- [ ] Run lint and clean up temporary/debug code
-- [ ] Specifically confirm the `referenceWidth`/`naturalTargetWidth` `console.log`s added while debugging `TrackedToMatch`'s width-measurement bug were actually removed, not just assumed gone
+- [x] Run a full production build (`next build` or equivalent) locally to catch build-time TypeScript errors before deploying
+- [x] Run lint and clean up temporary/debug code
+- [x] Specifically confirm the `referenceWidth`/`naturalTargetWidth` `console.log`s added while debugging `TrackedToMatch`'s width-measurement bug were actually removed, not just assumed gone
 
 ### 7. Lighthouse audit — required before deployment
 
-- [ ] Run in Chrome Incognito to get an unbiased baseline across Performance, Accessibility, Best Practices, and SEO
-- [ ] Fix whatever it flags before a reviewer finds it first
+- [x] Run in Chrome Incognito to get an unbiased baseline across Performance, Accessibility, Best Practices, and SEO
+- [x] Fix whatever it flags before a reviewer finds it first
 
 ### 8. Reset/clean seed data before launch
 
-- [ ] Decide whether to reset real personal data (`ciso@cisocodes.com` and associated test bookings/waitlist entries) currently sitting in the live database from manual testing, before pointing reviewers at the live site. Not a security exposure — that table isn't publicly readable — but worth a deliberate decision either way.
+- [x] Decide whether to reset real personal data (`ciso@cisocodes.com` and associated test bookings/waitlist entries) currently sitting in the live database from manual testing, before pointing reviewers at the live site. Not a security exposure — that table isn't publicly readable — but worth a deliberate decision either way.
 
 ### 9. Deploy
 
 - [ ] Deploy to Vercel, custom subdomain via GoDaddy — same pattern as Countsy and Wurst & Ale
-- [ ] Update README's "Live link coming soon" once the real URL exists
+- [x] Update README's "Live link coming soon" once the real URL exists
 
 ## Post-Deployment
 
