@@ -1,6 +1,6 @@
 import { getWeekSchedule } from "@/lib/schedule";
 import { getMyStudentName } from "@/lib/student";
-import { fromDateParam } from "@/lib/date-params";
+import { fromDateParam, getStudioToday } from "@/lib/date-params";
 import ScheduleControls from "./ScheduleControls";
 import WeekTableBody from "./WeekTableBody";
 import WeekCardList from "./WeekCardList";
@@ -13,7 +13,7 @@ interface ClassScheduleTableProps {
 }
 
 async function ClassScheduleTable({ dateStr, type }: ClassScheduleTableProps) {
-  const startDate = dateStr ? fromDateParam(dateStr) : new Date();
+  const startDate = dateStr ? fromDateParam(dateStr) : getStudioToday();
   const [week, defaultName] = await Promise.all([
     getWeekSchedule(startDate, type),
     getMyStudentName(),

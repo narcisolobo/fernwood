@@ -3,7 +3,12 @@
 import { useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IconCalendar } from "@tabler/icons-react";
-import { toDateParam, fromDateParam, isSameLocalDate } from "@/lib/date-params";
+import {
+  toDateParam,
+  fromDateParam,
+  isSameLocalDate,
+  getStudioToday,
+} from "@/lib/date-params";
 
 function ScheduleControls() {
   const router = useRouter();
@@ -12,8 +17,8 @@ function ScheduleControls() {
   const currentDateParam = searchParams.get("date");
   const currentDate = currentDateParam
     ? fromDateParam(currentDateParam)
-    : new Date();
-  const isCurrentWeek = isSameLocalDate(currentDate, new Date());
+    : getStudioToday();
+  const isCurrentWeek = isSameLocalDate(currentDate, getStudioToday());
 
   function goToDate(date: Date) {
     const params = new URLSearchParams(searchParams.toString());
@@ -44,7 +49,7 @@ function ScheduleControls() {
     <div className="flex items-center gap-2">
       <button
         className="btn btn-primary btn-sm btn-soft"
-        onClick={() => goToDate(new Date())}
+        onClick={() => goToDate(getStudioToday())}
       >
         Today
       </button>

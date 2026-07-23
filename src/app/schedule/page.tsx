@@ -1,4 +1,4 @@
-import { fromDateParam } from "@/lib/date-params";
+import { fromDateParam, getStudioToday } from "@/lib/date-params";
 import { formatDayLabel } from "@/lib/schedule-format";
 import ClassScheduleTable from "@/sections/schedule/ClassScheduleTable";
 import Schedule from "@/sections/schedule/Schedule";
@@ -17,7 +17,7 @@ interface Params {
 
 async function generateMetadata({ searchParams }: Params): Promise<Metadata> {
   const { date } = await searchParams;
-  const parsed = date ? fromDateParam(date) : new Date();
+  const parsed = date ? fromDateParam(date) : getStudioToday();
   const [weekday, dateLabel] = formatDayLabel(parsed).split("|");
   const title = `Class Schedule — ${weekday}, ${dateLabel}`;
 

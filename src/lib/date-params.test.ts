@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { fromDateParam, isSameLocalDate, toDateParam } from "./date-params";
+import {
+  fromDateParam,
+  getStudioToday,
+  isSameLocalDate,
+  toDateParam,
+} from "./date-params";
 
 describe("toDateParam", () => {
   it("formats a date as YYYY-MM-DD", () => {
@@ -25,6 +30,35 @@ describe("toDateParam + fromDateParam", () => {
   it("round-trips without shifting a day", () => {
     const dateStr = "2026-12-31";
     expect(toDateParam(fromDateParam(dateStr))).toBe(dateStr);
+  });
+});
+
+describe("getStudioToday", () => {
+  it("returns the Pacific calendar date for an instant during the Pacific business day", () => {
+    // 2026-07-20T15:00:00-07:00 is 3pm PDT, still July 20 everywhere.
+    const now = new Date("2026-07-20T15:00:00-07:00");
+    const today = getStudioToday(now);
+    expect(today.getFullYear()).toBe(2026);
+    expect(today.getMonth()).toBe(6);
+    expect(today.getDate()).toBe(20);
+  });
+
+  it("stays on the Pacific date even when UTC has already rolled over", () => {
+    // 2026-07-20T22:00:00-07:00 (10pm PDT) is 2026-07-21T05:00:00Z —
+    // already the next day in UTC, but still July 20 in Pacific time.
+    // This is exactly the window a UTC-based server would get wrong.
+    const now = new Date("2026-07-20T22:00:00-07:00");
+    const today = getStudioToday(now);
+    expect(today.getFullYear()).toBe(2026);
+    expect(today.getMonth()).toBe(6);
+    expect(today.getDate()).toBe(20);
+  });
+
+  it("rolls over at Pacific midnight, not UTC midnight", () => {
+    const justBefore = getStudioToday(new Date("2026-07-20T23:59:59-07:00"));
+    const justAfter = getStudioToday(new Date("2026-07-21T00:00:01-07:00"));
+    expect(justBefore.getDate()).toBe(20);
+    expect(justAfter.getDate()).toBe(21);
   });
 });
 

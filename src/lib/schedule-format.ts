@@ -1,3 +1,5 @@
+import { STUDIO_TIME_ZONE } from "./date-params";
+
 function formatTime(time: string): string {
   // time comes back from Postgres as "HH:MM:SS"
   const [hourStr, minuteStr] = time.split(":");
@@ -33,19 +35,62 @@ function formatConfirmationDate(date: Date): string {
   });
 }
 
+// `start_time` is a naive Postgres `time` column — it's always the studio's
+// Pacific wall-clock time, never the server's local time zone. Deployed
+// servers typically run in UTC, so comparing it against `now` requires
+// converting it to a real instant first; otherwise the comparison silently
+// shifts by the UTC/Pacific offset (and flips DST twice a year).
+function zonedTimeToUtc(
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  minute: number,
+  second: number,
+  timeZone: string,
+): Date {
+  const utcGuess = new Date(Date.UTC(year, month, day, hour, minute, second));
+
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).formatToParts(utcGuess);
+
+  const lookup: Record<string, string> = {};
+  for (const { type, value } of parts) lookup[type] = value;
+
+  const asIfUtc = Date.UTC(
+    Number(lookup.year),
+    Number(lookup.month) - 1,
+    Number(lookup.day),
+    lookup.hour === "24" ? 0 : Number(lookup.hour),
+    Number(lookup.minute),
+    Number(lookup.second),
+  );
+
+  return new Date(utcGuess.getTime() - (asIfUtc - utcGuess.getTime()));
+}
+
 function hasClassEnded(
   date: Date,
   startTime: string,
   now: Date = new Date(),
 ): boolean {
   const [hour, minute, second] = startTime.split(":").map(Number);
-  const startsAt = new Date(
+  const startsAt = zonedTimeToUtc(
     date.getFullYear(),
     date.getMonth(),
     date.getDate(),
     hour,
     minute,
     second,
+    STUDIO_TIME_ZONE,
   );
   return startsAt < now;
 }
